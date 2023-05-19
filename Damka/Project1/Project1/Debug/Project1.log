@@ -1,0 +1,8 @@
+﻿  Damka.c
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(42,51): warning C4020: 'FindSingleSourceMove': too many actual parameters
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(44,1): warning C4133: '=': incompatible types - from 'SingleSourceMovesTree *' to 'SingleSourceMovesTreeNode *'
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(44,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(48,20): error C2065: 'checkPosValid': undeclared identifier
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(50,12): error C2059: syntax error: ']'
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(73,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\אברמיקו\source\repos\Project_Damka\Project1\Project1\Damka.c(72,2): warning C4033: 'converCol' must return a value
