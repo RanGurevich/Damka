@@ -5,6 +5,9 @@
 #include <stdbool.h>
 
 #define BOARD_SIZE 8
+#define EMPTY_SLOT ' '
+#define PLAYER_1_CHAR 'T'
+#define PLAYER_2_CHAR 'B'
 
 typedef struct checkerPos
 {
@@ -38,23 +41,33 @@ void main()
 
 void duplicateBoard (Board board, SingleSourceMovesTreeNode* moveNode)
 {
-	Board newBoard;
 	int i, j;
+
 	for (i = 0; i < BOARD_SIZE; i++)
 	{
 		for (j = 0; j < BOARD_SIZE; j++)
 		{
-			newBoard[i][j] = board[i][j];
+			moveNode->board[i][j] = board[i][j];
 		}
 	}
-	moveNode->board;
 }
+
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree treeMove;
 	treeMove.source = FindSingleSourceMove(board, src, 0);
 
 
+}
+
+void updateBoard(Board board, checkersPos* toMovePoint, checkersPos* toRemove1, checkersPos* toRemove2, SingleSourceMovesTreeNode* moveNode) {
+	char playerToMove = board[convertRow(toRemove1)][convertCol(toRemove1)];
+	board[convertRow(toRemove1)][convertCol(toRemove1)] = EMPTY_SLOT;
+	if (toRemove2) {
+		board[convertRow(toRemove1)][convertCol(toRemove2)] = EMPTY_SLOT;
+	}
+	board[convertRow(toMovePoint)][convertCol(toMovePoint)] = playerToMove;
+	duplicateBoard(board, moveNode);
 }
 
 SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures)
@@ -65,18 +78,18 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 	
 	if (!checkPosValid) // àåìé ìà öøéê ëé îçùá îùç÷ ðâã îçùá
 		return NULL;
-	if (board[convertRow(src)][convertCol(src)] == ' ')
+	if (board[convertRow(src)][convertCol(src)] == EMPTY_SLOT)
 		return NULL;
 
 	switch (board[convertRow(src)][convertCol(src)])
 	{
-	case ' ':
+	case EMPTY_SLOT:
 		return NULL;
 		break;
-	case 'T':
+	case PLAYER_1_CHAR:
 		toolMovingPosition = -1;
 		break;
-		case 'B':
+		case PLAYER_2_CHAR:
 		break;
 		// now we check if we can move right or left
 
@@ -91,7 +104,7 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 	// check if possible move[0]
 	newPosition.col = src->col - toolMovingPosition;
 	newPosition.row = src->row + toolMovingPosition;
-	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertRow(newPosition.col)] != ' ')
+	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertRow(newPosition.col)] != EMPTY_SLOT)
 	{
 		// we can't move to move[0]
 		moveNode->next_move[0] == NULL;
@@ -105,9 +118,19 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 
 	//// move[1]
 
-	newPosition.col = src->col - toolMovingPosition;
-	newPosition.row = src->row + toolMovingPosition;
-
+	newPosition.col = src->col + toolMovingPosition;
+	newPosition.row = src->row - toolMovingPosition;
+	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertRow(newPosition.col)] != EMPTY_SLOT)
+	{
+		// we can't move to move[]
+		moveNode->next_move[1] == NULL;
+	}
+	else
+	{
+		// we can move to here
+		// board should be redraw
+		moveNode->next_move[1] = buildNewMoveNode(board, &newPosition, totalCaptures, NULL, NULL);
+	}
 	return moveNode;
 }
 SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int totalCaptures, SingleSourceMovesTreeNode* singleMove0, SingleSourceMovesTreeNode* singleMove1)
