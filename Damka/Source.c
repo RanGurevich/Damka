@@ -36,6 +36,19 @@ void main()
 
 }
 
+void duplicateBoard (Board board, SingleSourceMovesTreeNode* moveNode)
+{
+	Board newBoard;
+	int i, j;
+	for (i = 0; i < BOARD_SIZE; i++)
+	{
+		for (j = 0; j < BOARD_SIZE; j++)
+		{
+			newBoard[i][j] = board[i][j];
+		}
+	}
+	moveNode->board;
+}
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree treeMove;
@@ -44,26 +57,73 @@ SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 
 }
 
-SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src)
+SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures)
 {
-	if (checkPosValid == false)
+	SingleSourceMovesTreeNode* moveNode;
+	checkersPos newPosition;
+	int toolMovingPosition = 1;
+	
+	if (!checkPosValid) // אולי לא צריך כי מחשב משחק נגד מחשב
 		return NULL;
 	if (board[convertRow(src)][convertCol(src)] == ' ')
 		return NULL;
 
+	switch (board[convertRow(src)][convertCol(src)])
+	{
+	case ' ':
+		return NULL;
+		break;
+	case 'T':
+		toolMovingPosition = -1;
+		break;
+		case 'B':
+		break;
+		// now we check if we can move right or left
+
+		//check right
+
+	default:
+		break;
+	}
+	moveNode = buildNewMoveNode(board, src, totalCaptures, NULL, NULL); // build first 
+
+	// play without capture before
+	// check if possible move[0]
+	newPosition.col = src->col - toolMovingPosition;
+	newPosition.row = src->row + toolMovingPosition;
+	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertRow(newPosition.col)] != ' ')
+	{
+		// we can't move to move[0]
+		moveNode->next_move[0] == NULL;
+	}
+	else
+	{
+		// we can move to here
+		// board should be redraw
+		moveNode->next_move[0] = buildNewMoveNode(board, &newPosition, totalCaptures, NULL, NULL);
+	}
+
+	//// move[1]
+
+	newPosition.col = src->col - toolMovingPosition;
+	newPosition.row = src->row + toolMovingPosition;
+
+	return moveNode;
+}
+SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int totalCaptures, SingleSourceMovesTreeNode* singleMove0, SingleSourceMovesTreeNode* singleMove1)
+{
 	SingleSourceMovesTreeNode* moveNode = (SingleSourceMovesTreeNode*)malloc(sizeof(SingleSourceMovesTreeNode));
 	if (moveNode == NULL)
 		allocationFailure();
 
-	moveNode->board = board;
+	duplicateBoard(board, moveNode);
 	moveNode->pos = src;
-	moveNode->total_captures_so_far; // לבדוק מה עושים
-	moveNode->next_move[0] = NULL;
-	moveNode->next_move[1] = NULL;
-
-
-
+	moveNode->total_captures_so_far = totalCaptures; // לבדוק מה עושים
+	moveNode->next_move[0] = singleMove0;
+	moveNode->next_move[1] = singleMove1;
+	return moveNode;
 }
+
 
 bool checkPosValid(checkersPos* src)
 {
