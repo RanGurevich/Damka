@@ -55,9 +55,7 @@ void duplicateBoard (Board board, SingleSourceMovesTreeNode* moveNode)
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree treeMove;
-	treeMove.source = FindSingleSourceMove(board, src, 0);
-
-
+	treeMove.source = FindSingleSourceMoveHelper(board, src, 0);
 }
 
 void updateBoard(Board board, checkersPos* toMovePoint, checkersPos* toRemove1, checkersPos* toRemove2, SingleSourceMovesTreeNode* moveNode) {
@@ -67,7 +65,6 @@ void updateBoard(Board board, checkersPos* toMovePoint, checkersPos* toRemove1, 
 		board[convertRow(toRemove1)][convertCol(toRemove2)] = EMPTY_SLOT;
 	}
 	board[convertRow(toMovePoint)][convertCol(toMovePoint)] = playerToMove;
-	duplicateBoard(board, moveNode);
 }
 
 SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures)
@@ -76,7 +73,7 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 	checkersPos newPosition;
 	int toolMovingPosition = 1;
 	
-	if (!checkPosValid) // àåìé ìà öøéê ëé îçùá îùç÷ ðâã îçùá
+	if (!checkPosValid(src)) // we check if the movement is legal
 		return NULL;
 	if (board[convertRow(src)][convertCol(src)] == EMPTY_SLOT)
 		return NULL;
@@ -99,21 +96,22 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 		break;
 	}
 	moveNode = buildNewMoveNode(board, src, totalCaptures, NULL, NULL); // build first 
-
 	// play without capture before
 	// check if possible move[0]
 	newPosition.col = src->col - toolMovingPosition;
 	newPosition.row = src->row + toolMovingPosition;
 	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertRow(newPosition.col)] != EMPTY_SLOT)
 	{
-		// we can't move to move[0]
-		moveNode->next_move[0] == NULL;
+		// we can move to here
+		moveNode->pos = &newPosition;
+		duplicateBoard(board, moveNode);
+		updateBoard(moveNode->board, &newPosition, src, NULL, moveNode);
+		moveNode->next_move[0] = buildNewMoveNode(moveNode->board, &newPosition, totalCaptures, NULL, NULL);
 	}
 	else
 	{
-		// we can move to here
-		// board should be redraw
-		moveNode->next_move[0] = buildNewMoveNode(board, &newPosition, totalCaptures, NULL, NULL);
+		// we can't move to move[0]
+		moveNode->next_move[0] == NULL;
 	}
 
 	//// move[1]
@@ -131,6 +129,7 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 		// board should be redraw
 		moveNode->next_move[1] = buildNewMoveNode(board, &newPosition, totalCaptures, NULL, NULL);
 	}
+	// need to do the captures here
 	return moveNode;
 }
 SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int totalCaptures, SingleSourceMovesTreeNode* singleMove0, SingleSourceMovesTreeNode* singleMove1)
