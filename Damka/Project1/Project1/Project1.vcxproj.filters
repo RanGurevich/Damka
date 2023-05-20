@@ -18,5 +18,22 @@
     <ClCompile Include="Damka.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="boardAndMovemnts.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utills.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="boardAndMovements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utills.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

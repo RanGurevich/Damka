@@ -139,7 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="boardAndMovemnts.c" />
     <ClCompile Include="Damka.c" />
+    <ClCompile Include="utills.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="boardAndMovements.h" />
+    <ClInclude Include="structs.h" />
+    <ClInclude Include="utills.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
