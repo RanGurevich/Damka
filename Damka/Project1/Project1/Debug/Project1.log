@@ -1,17 +1,11 @@
 ﻿  boardAndMovemnts.c
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(21,46): warning C4013: 'FindSingleSourceMoveHelper' undefined; assuming extern returning int
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(21,61): warning C4047: '=': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(25,38): warning C4013: 'convertRow' undefined; assuming extern returning int
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(25,61): warning C4013: 'convertCol' undefined; assuming extern returning int
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(33,24): error C2040: 'FindSingleSourceMoveHelper': 'SingleSourceMovesTree *(unsigned char (*)[8],checkersPos *,int)' differs in levels of indirection from 'int ()'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(61,29): warning C4013: 'buildNewMoveNode' undefined; assuming extern returning int
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(61,68): warning C4047: '=': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(72,102): warning C4047: '=': '_SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(77,26): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(87,26): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(93,92): warning C4047: '=': '_SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(96,17): warning C4133: 'return': incompatible types - from 'SingleSourceMovesTreeNode *' to 'SingleSourceMovesTree *'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(99,28): error C2040: 'buildNewMoveNode': 'SingleSourceMovesTreeNode *(unsigned char (*)[8],checkersPos *,int,SingleSourceMovesTreeNode *,SingleSourceMovesTreeNode *)' differs in levels of indirection from 'int ()'
-  Damka.c
-  utills.c
-  Generating Code...
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(14,47): warning C4013: 'FindSingleSourceMoveHelper' undefined; assuming extern returning int
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(14,62): warning C4047: '=': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(19,38): warning C4013: 'convertRow' undefined; assuming extern returning int
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(19,61): warning C4013: 'convertCol' undefined; assuming extern returning int
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(27,24): error C2040: 'FindSingleSourceMoveHelper': 'SingleSourceMovesTree *(unsigned char (*)[8],checkersPos *,int)' differs in levels of indirection from 'int ()'
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(55,29): warning C4013: 'buildNewMoveNode' undefined; assuming extern returning int
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(55,68): warning C4047: '=': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(67,17): warning C4133: 'return': incompatible types - from 'SingleSourceMovesTreeNode *' to 'SingleSourceMovesTree *'
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(77,116): warning C4047: '=': '_SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
+C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(86,28): error C2040: 'buildNewMoveNode': 'SingleSourceMovesTreeNode *(unsigned char (*)[8],checkersPos *,int,SingleSourceMovesTreeNode *,SingleSourceMovesTreeNode *)' differs in levels of indirection from 'int ()'
