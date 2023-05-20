@@ -56,7 +56,7 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 	// play without capture before
 	// check if possible move[0]
 	newPosition.col = src->col - toolMovingPosition;
-	newPosition.row = src->row + toolMovingPosition;
+	newPosition.row = src->row - toolMovingPosition;
 	regularMovePlayOption(moveNode, newPosition, src, board, totalCaptures, 0);
 
 	//// move[1]
