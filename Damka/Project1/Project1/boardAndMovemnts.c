@@ -2,23 +2,14 @@
 
 bool checkPosValid(checkersPos* src);
 void allocationFailure();
-void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode)
-{
-	int i, j;
 
-	for (i = 0; i < BOARD_SIZE; i++)
-	{
-		for (j = 0; j < BOARD_SIZE; j++)
-		{
-			moveNode->board[i][j] = board[i][j];
-		}
-	}
-}
 
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
+// change to malloc
 	SingleSourceMovesTree treeMove;
 	treeMove.source = FindSingleSourceMoveHelper(board, src, 0);
+	return &treeMove;
 }
 
 void updateBoard(Board board, checkersPos* toMovePoint, checkersPos* toRemove1, checkersPos* toRemove2, SingleSourceMovesTreeNode* moveNode) {
@@ -74,17 +65,17 @@ SingleSourceMovesTree* FindSingleSourceMoveHelper(Board board, checkersPos* src,
 	else
 	{
 		// we can't move to move[0]
-		moveNode->next_move[0] == NULL;
+		moveNode->next_move[0] = NULL;
 	}
 
 	//// move[1]
 
 	newPosition.col = src->col + toolMovingPosition;
 	newPosition.row = src->row - toolMovingPosition;
-	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertRow(newPosition.col)] != EMPTY_SLOT)
+	if (checkPosValid(&newPosition) && board[convertRow(newPosition.row)][convertCol(newPosition.col)] != EMPTY_SLOT)
 	{
 		// we can't move to move[]
-		moveNode->next_move[1] == NULL;
+		moveNode->next_move[1] = NULL;
 	}
 	else
 	{
@@ -110,25 +101,18 @@ SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int t
 	return moveNode;
 }
 
-
-bool checkPosValid(checkersPos* src)
+void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode)
 {
-	return src->row < 'A' || src->row >= 'A' + BOARD_SIZE || src->col < '1' || src->col >= '1' + BOARD_SIZE;
-}
+	int i, j;
 
-int convertRow(checkersPos* src)
-{
-	return src->row - 'A' + 1;
-}
-
-int convertCol(checkersPos* src)
-{
-	return src->col - '0';
+	for (i = 0; i < BOARD_SIZE; i++)
+	{
+		for (j = 0; j < BOARD_SIZE; j++)
+		{
+			moveNode->board[i][j] = board[i][j];
+		}
+	}
 }
 
 
-void allocationFailure() //error message and exit in case the allocation has failed
-{
-	printf("Sorry, Allocation failure");
-	exit(1);
-}
+

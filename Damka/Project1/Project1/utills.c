@@ -7,14 +7,13 @@ bool checkPosValid(checkersPos* src)
 
 int convertRow(checkersPos* src)
 {
-	return src->row - 'A' + 1;
+	return src->row - 'A';
 }
 
 int convertCol(checkersPos* src)
 {
 	return src->col - '0';
 }
-
 
 void allocationFailure() //error message and exit in case the allocation has failed
 {
