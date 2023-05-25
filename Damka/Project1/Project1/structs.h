@@ -7,8 +7,10 @@
 
 #define BOARD_SIZE 8
 #define EMPTY_SLOT ' '
-#define PLAYER_1_CHAR 'T'
-#define PLAYER_2_CHAR 'B'
+#define PLAYER_T 'T'
+#define PLAYER_B 'B'
+#define LEFT 0
+#define RIGHT 1
 
 typedef struct checkerPos
 {
@@ -32,4 +34,3 @@ typedef struct _SingleSourceMovesTree {
 	SingleSourceMovesTreeNode* source;
 }SingleSourceMovesTree;
 
-SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src);

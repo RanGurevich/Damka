@@ -1,18 +1,2 @@
-﻿  boardAndMovemnts.c
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(15,47): warning C4013: 'FindSingleSourceMoveHelper' undefined; assuming extern returning int
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(15,62): warning C4047: '=': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(28,24): error C2040: 'FindSingleSourceMoveHelper': 'SingleSourceMovesTree *(unsigned char (*)[8],checkersPos *,int)' differs in levels of indirection from 'int ()'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(61,29): warning C4013: 'buildNewMoveNode' undefined; assuming extern returning int
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(61,68): warning C4047: '=': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(69,142): warning C4047: 'function': 'checkersPos *' differs in levels of indirection from 'checkersPos **'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(69,130): warning C4024: 'getCharOnBoard': different types for formal and actual parameter 2
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(82,17): warning C4133: 'return': incompatible types - from 'SingleSourceMovesTreeNode *' to 'SingleSourceMovesTree *'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(89,32): warning C4047: 'function': 'checkersPos *' differs in levels of indirection from 'checkersPos **'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(89,20): warning C4024: 'checkPosValid': different types for formal and actual parameter 1
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(94,44): warning C4047: 'function': 'checkersPos *' differs in levels of indirection from 'checkersPos **'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(94,32): warning C4024: 'updateBoard': different types for formal and actual parameter 2
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(86,1): warning C4047: 'initializing': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(103,43): warning C4047: 'function': 'checkersPos *' differs in levels of indirection from 'checkersPos **'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(103,31): warning C4024: 'updateBoard': different types for formal and actual parameter 2
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(100,1): warning C4047: 'initializing': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'int'
-C:\Users\ran70\Desktop\degree\Damka\Damka\Project1\Project1\boardAndMovemnts.c(107,28): error C2040: 'buildNewMoveNode': 'SingleSourceMovesTreeNode *(unsigned char (*)[8],checkersPos *,int,SingleSourceMovesTreeNode *,SingleSourceMovesTreeNode *)' differs in levels of indirection from 'int ()'
+﻿  utills.c
+  Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v4\Damka\Damka\Project1\Debug\Project1.exe

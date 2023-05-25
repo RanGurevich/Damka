@@ -1,5 +1,10 @@
 #include "utills.h"
 
+bool checkValidation(Board board, checkersPos* src)
+{
+	return checkPosValid(src) && board[convertRow(src)][convertCol(src)] == EMPTY_SLOT;
+}
+
 bool checkPosValid(checkersPos* src)
 {
 	return src->row < 'A' || src->row >= 'A' + BOARD_SIZE || src->col < '1' || src->col >= '1' + BOARD_SIZE;
@@ -7,7 +12,7 @@ bool checkPosValid(checkersPos* src)
 
 int convertRow(checkersPos* src)
 {
-	return src->row - 'A';
+	return src->row - 'a';
 }
 
 int convertCol(checkersPos* src)
