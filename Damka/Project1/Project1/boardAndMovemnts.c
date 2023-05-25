@@ -36,7 +36,22 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 //	char opponentPlayer = currentPlayer == PLAYER_T ? PLAYER_B : PLAYER_T;
 	int toolMovingPosition = 1;
 
-	allocationsPosAndCap(newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft);
+//	allocationsPosAndCap(newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft);
+	newPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!newPositionRight)
+		allocationFailure();
+
+	newPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!newPositionLeft)
+		allocationFailure();
+
+	captureMovingPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!captureMovingPositionRight)
+		allocationFailure();
+
+	captureMovingPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!captureMovingPositionLeft)
+		allocationFailure();
 
 	if (!checkValidation(board, src))
 		return NULL;
@@ -44,11 +59,12 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 	switch (currentPlayer)
 	{
 	case PLAYER_T:
-		toolMovingPosition = -1;
 		opponentPlayer = PLAYER_B;
 		break;
 	case PLAYER_B:
 		opponentPlayer = PLAYER_T;
+		toolMovingPosition = -1;
+
 		break;// now we check if we can move right or left //check right
 	default:
 		break;
@@ -56,6 +72,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 	moveNode = buildNewMoveNode(board, src, totalCaptures, NULL, NULL); // build first 	// play without capture before	// check if possible move[0]
 // 
 	//do move position to right and the left
+
 
 	setPosAndCap(src, newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft, toolMovingPosition);
 	
@@ -126,12 +143,15 @@ void regularMove(SingleSourceMovesTreeNode *moveNode, checkersPos *newPosition, 
 	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, newPosition, totalCaptures, NULL, NULL);
 	moveNode->next_move[playOptionIndex] = NULL;
 
-	if (checkPosValid(newPosition) && board[convertRow(newPosition)][convertCol(newPosition)] != EMPTY_SLOT && totalCaptures == 0)
+	if (checkPosValid(newPosition) && board[convertRow(newPosition)][convertCol(newPosition)] == EMPTY_SLOT && totalCaptures == 0)
 	{
 		// we can move to here
 		movementToAdd->pos = newPosition;
 		duplicateBoard(board, movementToAdd);
-		updateBoard(moveNode->board, newPosition, src, NULL, movementToAdd);
+		updateBoard(movementToAdd->board, newPosition, src, NULL, movementToAdd);
+		printf("XXXXX");
+		printBoard(movementToAdd->board);
+		printf("XXXXX");
 		moveNode->next_move[playOptionIndex] = movementToAdd;
 	}
 }

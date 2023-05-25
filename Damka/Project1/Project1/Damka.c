@@ -16,24 +16,22 @@ void main()
 	   { ' ', 'B', ' ', 'B', ' ', 'B', ' ', 'B' },
 	   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 	   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-	   { 'T', ' ', 'E', ' ', 'T', ' ', 'T', ' ' },
+	   { 'T', ' ', 'T', ' ', 'T', ' ', 'T', ' ' },
 	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
 	   { 'T', ' ', 'T', ' ', 'T', ' ', 'T', ' ' }
 	};
 
-	checkersPos src = {'5', 'C'};
+	checkersPos src = {'C', '7'};
 
 	printf("Initial Board:\n");
 	printBoard(board);
 	printf("\n");
 
-	printf("%c", getCharOnBoard(board, &src));
+	SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
 
-//	SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
-
-	/*printf("Board after Operations:\n");
-	printBoard(tree->source->board);
-	printf("\n");*/
+	//printf("Board after Operations:\n");
+	//printBoard(tree->source->next_move[1]->board);
+	//printf("\n");
 
 }
 
