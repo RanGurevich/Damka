@@ -149,7 +149,7 @@ void regularMove(SingleSourceMovesTreeNode *moveNode, checkersPos *newPosition, 
 		movementToAdd->pos = newPosition;
 		duplicateBoard(board, movementToAdd);
 		updateBoard(movementToAdd->board, newPosition, src, NULL, movementToAdd);
-		printf("XXXXX");
+		printf("POS: %d\n", playOptionIndex);
 		printBoard(movementToAdd->board);
 		printf("XXXXX");
 		moveNode->next_move[playOptionIndex] = movementToAdd;
@@ -160,8 +160,11 @@ void captureMove (SingleSourceMovesTreeNode* moveNode, checkersPos *capturedPlay
 	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, capturePos, totalCaptures+1, NULL, NULL);
 	movementToAdd->pos = capturePos;
 	duplicateBoard(board, movementToAdd);
-	updateBoard(moveNode->board, capturePos, src, capturedPlayer, movementToAdd);
+	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
 	moveNode->next_move[playOptionIndex] = movementToAdd;
+	printf("POS: %d\n", playOptionIndex);
+	printBoard(moveNode->next_move[playOptionIndex]->board);
+	printf("XXXXX");
 	free(capturedPlayer);
 }
 
