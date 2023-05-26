@@ -34,3 +34,13 @@ typedef struct _SingleSourceMovesTree {
 	SingleSourceMovesTreeNode* source;
 }SingleSourceMovesTree;
 
+typedef struct _SingleSourceMovesListCell {
+	checkersPos* position;
+	unsigned short captures; 
+	struct _SingleSourceMovesListCell* next;
+} SingleSourceMovesListCell;
+
+typedef struct _SingleSourceMovesList {
+	SingleSourceMovesListCell* head;
+	SingleSourceMovesListCell* tail;
+} SingleSourceMovesList;

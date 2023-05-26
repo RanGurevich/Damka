@@ -12,9 +12,6 @@ void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode);
 void regularMove(SingleSourceMovesTreeNode* moveNode, checkersPos* newPosition, checkersPos* src, Board board, int totalCaptures, int playOptionIndex);
 void printBoard(Board board);
 
-
-
-
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree *treeMove = malloc(sizeof(SingleSourceMovesTree));
@@ -24,8 +21,6 @@ SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 	treeMove->source = FindSingleSourceMoveHelper(board, src, 0);
 	return treeMove;
 }
-
-
 
 SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures)
 {
