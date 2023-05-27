@@ -33,7 +33,7 @@ void insertDataToEndListSingleSource(SingleSourceMovesList* lst, checkersPos* po
 {
 	SingleSourceMovesListCell* newTail;
 	newTail = createNewListNodeSingleSource(position, captures, next);
-	insertNodeToEndList(lst, newTail);
+	insertNodeToEndListSingleSource(lst, newTail);
 }
 
 void insertNodeToEndListSingleSource(SingleSourceMovesList* lst, SingleSourceMovesListCell* tail)

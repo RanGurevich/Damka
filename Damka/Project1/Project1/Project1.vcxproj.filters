@@ -24,6 +24,12 @@
     <ClCompile Include="utills.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lists.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="movements.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boardAndMovements.h">
@@ -33,6 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utills.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lists.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="movements.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

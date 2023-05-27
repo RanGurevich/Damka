@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -141,10 +141,14 @@
   <ItemGroup>
     <ClCompile Include="boardAndMovemnts.c" />
     <ClCompile Include="Damka.c" />
+    <ClCompile Include="Lists.c" />
+    <ClCompile Include="movements.c" />
     <ClCompile Include="utills.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boardAndMovements.h" />
+    <ClInclude Include="Lists.h" />
+    <ClInclude Include="movements.h" />
     <ClInclude Include="structs.h" />
     <ClInclude Include="utills.h" />
   </ItemGroup>
