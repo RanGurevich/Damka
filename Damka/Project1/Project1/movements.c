@@ -10,27 +10,53 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 		allocationFailure();
 	}
 	makeEmptyListSingleSource(list);
-	FindSingleSourceOptimalMoveHelper(moves_tree->source, list);
+	FindSingleSourceOptimalMoveHelper(moves_tree->source, list, getCharOnBoard(moves_tree->source->board, moves_tree->source->pos));
+	return list;
 }
 
-int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, SingleSourceMovesList* list) {
-	int captureRight = 0, captureLeft = 0;
-	if (treeNode->next_move[LEFT] && treeNode->next_move[RIGHT])
+int numbersOfNodesInTree(SingleSourceMovesTreeNode* treeNode) {
+	int right = 0;
+	int left = 0;
+	if (!treeNode)
 	{
-		return treeNode->total_captures_so_far;
+		return 0;
 	}
-	captureRight = FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list);
-	captureLeft = FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list);
-	if (captureRight > captureLeft) {
-		insertDataToEndListSingleSource(list, treeNode->pos, treeNode->total_captures_so_far, NULL);
-		if(!treeNode->next_move[RIGHT])
-		FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list);
+	return numbersOfNodesInTree(treeNode->next_move[RIGHT]) + numbersOfNodesInTree(treeNode->next_move[LEFT]) +1;
+}
+
+int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, SingleSourceMovesList* list, Player currPlayer) {
+	int captureRight = 0, captureLeft = 0;
+	if (!treeNode) {
+		return 0;
+	}
+	captureRight = numbersOfNodesInTree(treeNode->next_move[RIGHT]); //1
+	captureLeft = numbersOfNodesInTree(treeNode->next_move[LEFT]); // 1
+	insertDataToEndListSingleSource(list, treeNode->pos, treeNode->total_captures_so_far, NULL);
+	if (captureRight > captureLeft) 
+	{
+		if(treeNode->next_move[RIGHT])
+		FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list, currPlayer);
+		//to do freelist
+	}
+	else if (captureRight == captureLeft)
+	{
+		if (currPlayer == PLAYER_T)
+		{
+			FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list, currPlayer);
+			//to do freelist
+		}
+		else
+		{
+			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
+			//to do freelist
+		}
+
 	}
 	else
 	{
-		insertDataToEndListSingleSource(list, treeNode->pos, treeNode->total_captures_so_far, NULL);
-		if (!treeNode->next_move[LEFT])
-		FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list);
+		if (treeNode->next_move[LEFT])
+		FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
+		//to do freelist
 	}
 }
 

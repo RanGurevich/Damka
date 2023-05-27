@@ -1,4 +1,2 @@
 ﻿  Damka.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v5\Damka\Damka\Project1\Project1\Damka.c(29,12): warning C4013: 'printBoard' undefined; assuming extern returning int
-C:\Users\אברמיקו\Desktop\damkaVersions\v5\Damka\Damka\Project1\Project1\Damka.c(21,1): warning C4305: 'initializing': truncation from 'int' to 'unsigned char'
   Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v5\Damka\Damka\Project1\Debug\Project1.exe
