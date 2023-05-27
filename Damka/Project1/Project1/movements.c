@@ -2,6 +2,7 @@
 #include "utills.h"
 #include "structs.h"
 #include "Lists.h"
+#include "movements.h"
 
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree) {
 	SingleSourceMovesList* list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList)));
@@ -32,3 +33,5 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 		FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list);
 	}
 }
+
+

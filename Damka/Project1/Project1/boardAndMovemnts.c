@@ -119,6 +119,8 @@ void movePlayerLeft(Board board, SingleSourceMovesTreeNode* moveNode, checkersPo
 		regularMove(moveNode, newPositionLeft, src, board, totalCaptures, LEFT);
 		free(captureMovingPositionLeft);
 	}
+	printf("\n captures: %d\n", moveNode->total_captures_so_far);
+
 }
 
 void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionRight, checkersPos* newPositionRight, char opponentPlayer, int totalCaptures)
@@ -132,6 +134,8 @@ void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersP
 		regularMove(moveNode, newPositionRight, src, board, totalCaptures, RIGHT);
 		free(captureMovingPositionRight);
 	}
+	printf("\n captures: %d\n", moveNode->total_captures_so_far);
+
 }
 
 void regularMove(SingleSourceMovesTreeNode *moveNode, checkersPos *newPosition, checkersPos* src, Board board, int totalCaptures, int playOptionIndex) {
@@ -149,6 +153,7 @@ void regularMove(SingleSourceMovesTreeNode *moveNode, checkersPos *newPosition, 
 		printf("XXXXX");
 		moveNode->next_move[playOptionIndex] = movementToAdd;
 	}
+
 }
 
 void captureMove (SingleSourceMovesTreeNode* moveNode, checkersPos *capturedPlayer, checkersPos *capturePos, checkersPos* src, Board board, int totalCaptures, int playOptionIndex) {
