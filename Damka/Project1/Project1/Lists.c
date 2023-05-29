@@ -47,3 +47,50 @@ void insertNodeToEndListSingleSource(SingleSourceMovesList* lst, SingleSourceMov
 	}
 	tail->next = NULL;
 }
+
+
+
+void makeEmptyListAllOptions(MultipleSourceMovesList* lst)
+{
+	lst->head = NULL;
+	lst->tail = NULL;
+}
+
+bool isEmptyListAllOptions(MultipleSourceMovesList* lst)
+{
+	if (lst->head == NULL)
+		return true;
+	else
+		return false;
+}
+
+MultipleSourceMovesListCell* createNewListNodeAllOptions(SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next)
+{
+	MultipleSourceMovesListCell* res;
+	res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
+	if (!res)
+		allocationFailure();
+	//res->single_source_moves_list = (SingleSourceMovesList*)(malloc(sizeof())) // if we need to allocate
+	res->single_source_moves_list = characterOptionPlayList;
+	res->next = next;
+	return res;
+}
+
+void insertDataToEndListAllOptions(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* characterOptionPlayList, MultipleSourceMovesListCell* next)
+{
+	MultipleSourceMovesListCell* newTail;
+	newTail = createNewListNodeAllOptions(characterOptionPlayList, next);
+	insertNodeToEndListAllOptions(lst, newTail);
+}
+
+void insertNodeToEndListAllOptions(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* tail)
+{
+	if (isEmptyListAllOptions(lst)) {
+		lst->head = lst->tail = tail;
+	}
+	else {
+		lst->tail->next = tail;
+		lst->tail = tail;
+	}
+	tail->next = NULL;
+}

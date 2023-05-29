@@ -3,6 +3,7 @@
 #include "structs.h"
 #include "Lists.h"
 #include "movements.h"
+#include "boardAndMovements.h"
 
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree) {
 	SingleSourceMovesList* list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList)));
@@ -50,7 +51,6 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
 			//to do freelist
 		}
-
 	}
 	else
 	{
@@ -58,6 +58,31 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 		FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
 		//to do freelist
 	}
+}
+
+MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player) {
+	int i, j;
+	MultipleSourceMovesList* playerAllOptionsList = (MultipleSourceMovesList*)(malloc(sizeof(MultipleSourceMovesList)));
+	checkersPos* pos = (checkersPos*)(malloc(sizeof(checkersPos)));
+	if (!playerAllOptionsList || pos) {
+		allocationFailure();
+	}
+	makeEmptyListAllOptions(playerAllOptionsList);
+	for (i = 0; i < SIZE_MAX; i++)
+	{
+		for ( j = 0; j < SIZE_MAX; j++)
+		{
+			if (board[i][j] == player)
+			{
+				pos->col = i + '0';
+				pos->row = j + 'A';
+				insertDataToEndListAllOptions(playerAllOptionsList,
+				FindSingleSourceOptimalMove(FindSingleSourceMove(board, pos)), NULL);
+			}
+		}
+	}
+	free(pos);
+	return playerAllOptionsList;
 }
 
 

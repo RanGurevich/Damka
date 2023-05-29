@@ -6,3 +6,8 @@ void insertNodeToEndListSingleSource(SingleSourceMovesList* lst, SingleSourceMov
 void makeEmptyListSingleSource(SingleSourceMovesList* lst);
 bool isEmptyListSingleSource(SingleSourceMovesList* lst);
 SingleSourceMovesListCell* createNewListNodeSingleSource(checkersPos* position, unsigned short captures, SingleSourceMovesListCell* next);
+void makeEmptyListAllOptions(MultipleSourceMovesList* lst);
+bool isEmptyListAllOptions(MultipleSourceMovesList* lst);
+MultipleSourceMovesListCell* createNewListNodeAllOptions(SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next);
+void insertDataToEndListAllOptions(MultipleSourceMovesList* lst, SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next);
+void insertNodeToEndListAllOptions(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* tail);

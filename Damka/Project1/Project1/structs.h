@@ -44,3 +44,13 @@ typedef struct _SingleSourceMovesList {
 	SingleSourceMovesListCell* head;
 	SingleSourceMovesListCell* tail;
 } SingleSourceMovesList;
+
+typedef struct _multipleSourceMovesListCell {
+	SingleSourceMovesList* single_source_moves_list; 
+	struct _multipleSourceMovesListCell *next; 	
+} MultipleSourceMovesListCell;
+
+typedef struct _multipleSourceMovesList {
+	MultipleSourceMovesListCell* head;
+	MultipleSourceMovesListCell* tail;
+} MultipleSourceMovesList;
