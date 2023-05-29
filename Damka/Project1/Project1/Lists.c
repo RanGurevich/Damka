@@ -76,7 +76,7 @@ MultipleSourceMovesListCell* createNewListNodeAllOptions(SingleSourceMovesList* 
 	return res;
 }
 
-void insertDataToEndListAllOptions(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* characterOptionPlayList, MultipleSourceMovesListCell* next)
+void insertDataToEndListAllOptions(MultipleSourceMovesList* lst, SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next)
 {
 	MultipleSourceMovesListCell* newTail;
 	newTail = createNewListNodeAllOptions(characterOptionPlayList, next);
