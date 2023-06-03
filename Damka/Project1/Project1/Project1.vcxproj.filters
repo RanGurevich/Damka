@@ -30,6 +30,9 @@
     <ClCompile Include="movements.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameManegemant.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boardAndMovements.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="movements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameManegment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

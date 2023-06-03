@@ -6,6 +6,7 @@
 #include "structs.h"
 #include "boardAndMovements.h"
 #include "movements.h"
+#include "gameManegment.h"
 
 void printList(SingleSourceMovesList* lst);
 void printTreeLDR(SingleSourceMovesTree* tr);
@@ -42,7 +43,8 @@ void main()
 
 //	SingleSourceMovesList* listRes;
 //	listRes = FindSingleSourceOptimalMove(tree);
-	printListAllOptions(FindAllPossiblePlayerMoves(board, 'B'));
+//	printListAllOptions(FindAllPossiblePlayerMoves(board, 'B'));
+// 	   
 //	printList(listRes);
 
 
@@ -59,24 +61,25 @@ void main()
 	//printf("Board after Operations:\n");
 	//printBoard(tree->source->next_move[1]->board);
 	//printf("\n");
+	Turn(board, 'T');
 }
 
-void printList(SingleSourceMovesList* lst)
-{
-	SingleSourceMovesListCell* curr = lst->head;
-	int count = 1;
-
-	while (curr != NULL)
-	{
-		printf("num of cell: %d \n", count);
-		printf("col: %c\n", curr->position->col);
-		printf("row:%c\n", curr->position->row);
-		printf("captures: % d\n", curr->captures);
-		printf("\n");
-		count++;
-		curr = curr->next;
-	}
-}
+//void printList(SingleSourceMovesList* lst)
+//{
+//	SingleSourceMovesListCell* curr = lst->head;
+//	int count = 1;
+//
+//	while (curr != NULL)
+//	{
+//		printf("num of cell: %d \n", count);
+//		printf("col: %c\n", curr->position->col);
+//		printf("row:%c\n", curr->position->row);
+//		printf("captures: % d\n", curr->captures);
+//		printf("\n");
+//		count++;
+//		curr = curr->next;
+//	}
+//}
 
 void printListAllOptions(MultipleSourceMovesList* lst)
 {

@@ -31,3 +31,4 @@ void allocationFailure() //error message and exit in case the allocation has fai
 char getCharOnBoard(Board board, checkersPos *position) {
 	return board[convertRow(position)][convertCol(position)];
 }
+

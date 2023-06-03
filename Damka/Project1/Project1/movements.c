@@ -108,5 +108,22 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player) 
 	return playerAllOptionsList;
 }
 
-
-
+SingleSourceMovesList* findBestMove(MultipleSourceMovesList* allMoves, Player playTurn) {
+	
+	MultipleSourceMovesListCell* currAllMoves = allMoves->head;
+	SingleSourceMovesList* maxSingleMove = currAllMoves->single_source_moves_list;
+	int maxCaptures = currAllMoves->single_source_moves_list->tail->captures;
+	int currentCapture;
+	currAllMoves = currAllMoves->next;
+	
+	while (currAllMoves)
+	{
+		currentCapture = currAllMoves->single_source_moves_list->tail->captures;
+		if (playTurn == 'T' ? maxCaptures <= currentCapture : maxCaptures < currentCapture) {
+			maxCaptures = currAllMoves->single_source_moves_list->tail->captures;
+			maxSingleMove = currAllMoves->single_source_moves_list;
+		}
+		currAllMoves = currAllMoves->next;
+	}
+	return maxSingleMove;
+}

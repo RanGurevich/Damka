@@ -5,3 +5,4 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, SingleSourceMovesList* list);
 MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player);
 findTheBiggerCapture(SingleSourceMovesTreeNode* treeNode);
+SingleSourceMovesList* findBestMove(MultipleSourceMovesList* allMoves, Player playTurn);
