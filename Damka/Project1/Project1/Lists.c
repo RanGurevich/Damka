@@ -64,17 +64,47 @@ bool isEmptyListAllOptions(MultipleSourceMovesList* lst)
 		return false;
 }
 
+//MultipleSourceMovesListCell* createNewListNodeAllOptions(SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next)
+//{
+//	MultipleSourceMovesListCell* res;
+//	res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
+//	if (!res)
+//		allocationFailure();
+//	res->single_source_moves_list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList))); // if we need to allocate
+//	res->single_source_moves_list = characterOptionPlayList;
+//	res->next = next;
+//	return res;
+//}
+
 MultipleSourceMovesListCell* createNewListNodeAllOptions(SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next)
 {
-	MultipleSourceMovesListCell* res;
-	res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
-	if (!res)
+	MultipleSourceMovesListCell* res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
+	if (!res) {
 		allocationFailure();
-	//res->single_source_moves_list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList))); // if we need to allocate
-	res->single_source_moves_list = characterOptionPlayList;
+	}
+	res->single_source_moves_list = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
+	if (!res->single_source_moves_list) {
+		allocationFailure();
+	}
+	makeEmptyListSingleSource(res->single_source_moves_list);
+	SingleSourceMovesListCell* curr = characterOptionPlayList->head;
+	while (curr != NULL) {
+		// Create a new checkersPos instance and copy the values
+		checkersPos* newPos = (checkersPos*)malloc(sizeof(checkersPos));
+		if (!newPos) {
+			allocationFailure();
+		}
+		newPos->row = curr->position->row;
+		newPos->col = curr->position->col;
+
+		// Insert the new checkersPos instance into the new list
+		insertDataToEndListSingleSource(res->single_source_moves_list, newPos, curr->captures, NULL);
+		curr = curr->next;
+	}
 	res->next = next;
 	return res;
 }
+
 
 void insertDataToEndListAllOptions(MultipleSourceMovesList* lst, SingleSourceMovesList* characterOptionPlayList, MultipleSourceMovesListCell* next)
 {

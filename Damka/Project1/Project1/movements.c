@@ -5,8 +5,6 @@
 #include "movements.h"
 #include "boardAndMovements.h"
 
-void printListAllOptionsX(MultipleSourceMovesList* lst);
-void printListX(SingleSourceMovesList* lst);
 
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree) {
 	SingleSourceMovesList* list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList)));
@@ -14,35 +12,49 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 		allocationFailure();
 	}
 	makeEmptyListSingleSource(list);
-	FindSingleSourceOptimalMoveHelper(moves_tree->source, list, getCharOnBoard(moves_tree->source->board, moves_tree->source->pos));
+	if (moves_tree->source) {
+		FindSingleSourceOptimalMoveHelper(moves_tree->source, list, getCharOnBoard(moves_tree->source->board, moves_tree->source->pos));
+	}
 	return list;
 }
 
-int numbersOfNodesInTree(SingleSourceMovesTreeNode* treeNode) {
-	int right = 0;
+int findTheBiggerCapture(SingleSourceMovesTreeNode* treeNode) {
+	/*int right = 0;
 	int left = 0;
 	if (!treeNode)
 	{
 		return 0;
 	}
-	return numbersOfNodesInTree(treeNode->next_move[RIGHT]) + numbersOfNodesInTree(treeNode->next_move[LEFT]) +1;
-}
-
-int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, SingleSourceMovesList* list, Player currPlayer) {
-	int captureRight = 0, captureLeft = 0;
+	return numbersOfNodesInTree(treeNode->next_move[RIGHT]) + numbersOfNodesInTree(treeNode->next_move[LEFT]) + 1;*/
 	if (!treeNode) {
 		return 0;
 	}
-	captureRight = numbersOfNodesInTree(treeNode->next_move[RIGHT]); //1
-	captureLeft = numbersOfNodesInTree(treeNode->next_move[LEFT]); // 1
+
+	if (!treeNode->next_move[LEFT] && !treeNode->next_move[RIGHT])
+		return treeNode->total_captures_so_far;
+
+	int leftHeight = findTheBiggerCapture(treeNode->next_move[LEFT]);
+	int rightHeight = findTheBiggerCapture(treeNode->next_move[RIGHT]);
+
+	return  (leftHeight > rightHeight ? leftHeight : rightHeight);
+}
+
+int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, SingleSourceMovesList* list, Player currPlayer) {
+	int capturesRight = 0, capturesLeft = 0;
+	if (!treeNode) {
+		return 0;
+	}
+	// check if it possible to do without the height
+	capturesRight = !treeNode->next_move[RIGHT] ? -1 : findTheBiggerCapture(treeNode->next_move[RIGHT]); //1
+	capturesLeft = !treeNode->next_move[LEFT] ? -1 : findTheBiggerCapture(treeNode->next_move[LEFT]); // 1
 	insertDataToEndListSingleSource(list, treeNode->pos, treeNode->total_captures_so_far, NULL);
-	if (captureRight > captureLeft) 
+	if (capturesRight > capturesLeft)
 	{
-		if(treeNode->next_move[RIGHT])
-		FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list, currPlayer);
+		if (treeNode->next_move[RIGHT])
+			FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list, currPlayer);
 		//to do freelist
 	}
-	else if (captureRight == captureLeft)
+	else if (capturesRight == capturesLeft)
 	{
 		if (currPlayer == PLAYER_T)
 		{
@@ -58,7 +70,7 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 	else
 	{
 		if (treeNode->next_move[LEFT])
-		FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
+			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
 		//to do freelist
 	}
 }
@@ -66,63 +78,35 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player) {
 	int i, j;
 	MultipleSourceMovesList* playerAllOptionsList = (MultipleSourceMovesList*)(malloc(sizeof(MultipleSourceMovesList)));
-	SingleSourceMovesTree moveTree;
-	//SingleSourceMovesTree moveTree = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree));
+	SingleSourceMovesTree *moveTree = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree)); //check allox
 	checkersPos* pos = (checkersPos*)(malloc(sizeof(checkersPos)));
 	SingleSourceMovesList* optimalMoves = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
-	
+	SingleSourceMovesList optimalMovesToSend;
 	if (!playerAllOptionsList || !pos) {
 		allocationFailure();
 	}
 	makeEmptyListAllOptions(playerAllOptionsList);
-	for (i = 0; i < SIZE_MAX; i++)
+	for (i = 0; i < BOARD_SIZE; i++)
 	{
-		for ( j = 0; j < SIZE_MAX; j++)
+		for (j = 0; j < BOARD_SIZE; j++)
 		{
 			if (board[i][j] == player)
 			{
 				pos->row = i + 'A';
 				pos->col = j + '0';
-				moveTree = *FindSingleSourceMove(board, pos);
-				optimalMoves = FindSingleSourceOptimalMove(&moveTree);
-				insertDataToEndListAllOptions(playerAllOptionsList, optimalMoves, NULL);
+				moveTree = FindSingleSourceMove(board, pos);
+				optimalMoves = FindSingleSourceOptimalMove(moveTree);
+				optimalMovesToSend.head = optimalMoves->head;
+				optimalMovesToSend.tail = optimalMoves->tail;
+				insertDataToEndListAllOptions(playerAllOptionsList, &optimalMovesToSend, NULL);
 				//printListAllOptionsX(optimalMoves);
 			}
+			//printf("i %d j %d\n", i, j);
 		}
 	}
 	free(pos);
 	return playerAllOptionsList;
 }
 
-void printListAllOptionsX(MultipleSourceMovesList* lst)
-{
-	MultipleSourceMovesListCell* curr = lst->head;
-	int count = 1;
-
-	while (curr != NULL)
-	{
-		printListX(curr->single_source_moves_list);
-		curr = curr->next;
-	}
-}
-
-void printListX(SingleSourceMovesList* lst)
-{
-	SingleSourceMovesListCell* curr = lst->head;
-	int count = 1;
-
-
-
-	while (curr != NULL)
-	{
-		printf("num of cell: %d \n\n", count);
-		printf("col: %c\n", curr->position->col);
-		printf("row:%c\n", curr->position->row);
-		printf("captures: % d\n", curr->captures);
-		printf("\n");
-		count++;
-		curr = curr->next;
-	}
-}
 
 

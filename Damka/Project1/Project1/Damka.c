@@ -17,7 +17,7 @@ void main()
 {
 
 	Board board = {
-	   { ' ', ' ', ' ', 'T', ' ', 'T', ' ', 'T' },
+	   { ' ', ' ', ' ', 'T', ' ', ' ', ' ', 'T' },
 	   { 'T', ' ', 'T', ' ', 'T', ' ', ' ', ' ' },
 	   { ' ', 'B', ' ', 'B', ' ', ' ', ' ', ' ' },
 	   { ' ', ' ', ' ', ' ', ' ', ' ', 'T', ' ' },
@@ -42,7 +42,7 @@ void main()
 
 //	SingleSourceMovesList* listRes;
 //	listRes = FindSingleSourceOptimalMove(tree);
-	printListAllOptions(FindAllPossiblePlayerMoves(board, 'T'));
+	printListAllOptions(FindAllPossiblePlayerMoves(board, 'B'));
 //	printList(listRes);
 
 
@@ -66,11 +66,9 @@ void printList(SingleSourceMovesList* lst)
 	SingleSourceMovesListCell* curr = lst->head;
 	int count = 1;
 
-
-
 	while (curr != NULL)
 	{
-		printf("num of cell: %d \n\n", count);
+		printf("num of cell: %d \n", count);
 		printf("col: %c\n", curr->position->col);
 		printf("row:%c\n", curr->position->row);
 		printf("captures: % d\n", curr->captures);
@@ -87,8 +85,10 @@ void printListAllOptions(MultipleSourceMovesList* lst)
 
 	while (curr != NULL)
 	{
+		printf("Multiple Source Moves number : %d \n", count);
 		printList(curr->single_source_moves_list);
 		curr = curr->next;
+		count++;
 	}
 }
 
