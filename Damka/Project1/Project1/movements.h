@@ -3,3 +3,4 @@
 
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree);
 int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, SingleSourceMovesList* list);
+MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player);

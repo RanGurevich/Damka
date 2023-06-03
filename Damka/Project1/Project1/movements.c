@@ -5,6 +5,9 @@
 #include "movements.h"
 #include "boardAndMovements.h"
 
+void printListAllOptionsX(MultipleSourceMovesList* lst);
+void printListX(SingleSourceMovesList* lst);
+
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree) {
 	SingleSourceMovesList* list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList)));
 	if (!list) {
@@ -63,8 +66,12 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player) {
 	int i, j;
 	MultipleSourceMovesList* playerAllOptionsList = (MultipleSourceMovesList*)(malloc(sizeof(MultipleSourceMovesList)));
+	SingleSourceMovesTree moveTree;
+	//SingleSourceMovesTree moveTree = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree));
 	checkersPos* pos = (checkersPos*)(malloc(sizeof(checkersPos)));
-	if (!playerAllOptionsList || pos) {
+	SingleSourceMovesList* optimalMoves = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
+	
+	if (!playerAllOptionsList || !pos) {
 		allocationFailure();
 	}
 	makeEmptyListAllOptions(playerAllOptionsList);
@@ -74,15 +81,48 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player) 
 		{
 			if (board[i][j] == player)
 			{
-				pos->col = i + '0';
-				pos->row = j + 'A';
-				insertDataToEndListAllOptions(playerAllOptionsList,
-				FindSingleSourceOptimalMove(FindSingleSourceMove(board, pos)), NULL);
+				pos->row = i + 'A';
+				pos->col = j + '0';
+				moveTree = *FindSingleSourceMove(board, pos);
+				optimalMoves = FindSingleSourceOptimalMove(&moveTree);
+				insertDataToEndListAllOptions(playerAllOptionsList, optimalMoves, NULL);
+				//printListAllOptionsX(optimalMoves);
 			}
 		}
 	}
 	free(pos);
 	return playerAllOptionsList;
+}
+
+void printListAllOptionsX(MultipleSourceMovesList* lst)
+{
+	MultipleSourceMovesListCell* curr = lst->head;
+	int count = 1;
+
+	while (curr != NULL)
+	{
+		printListX(curr->single_source_moves_list);
+		curr = curr->next;
+	}
+}
+
+void printListX(SingleSourceMovesList* lst)
+{
+	SingleSourceMovesListCell* curr = lst->head;
+	int count = 1;
+
+
+
+	while (curr != NULL)
+	{
+		printf("num of cell: %d \n\n", count);
+		printf("col: %c\n", curr->position->col);
+		printf("row:%c\n", curr->position->row);
+		printf("captures: % d\n", curr->captures);
+		printf("\n");
+		count++;
+		curr = curr->next;
+	}
 }
 
 

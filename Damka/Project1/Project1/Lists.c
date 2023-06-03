@@ -70,7 +70,7 @@ MultipleSourceMovesListCell* createNewListNodeAllOptions(SingleSourceMovesList* 
 	res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
 	if (!res)
 		allocationFailure();
-	//res->single_source_moves_list = (SingleSourceMovesList*)(malloc(sizeof())) // if we need to allocate
+	//res->single_source_moves_list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList))); // if we need to allocate
 	res->single_source_moves_list = characterOptionPlayList;
 	res->next = next;
 	return res;
@@ -80,6 +80,8 @@ void insertDataToEndListAllOptions(MultipleSourceMovesList* lst, SingleSourceMov
 {
 	MultipleSourceMovesListCell* newTail;
 	newTail = createNewListNodeAllOptions(characterOptionPlayList, next);
+	//printf("new tail all option:\n");
+	//printf("pos: ", characterOptionPlayList->)
 	insertNodeToEndListAllOptions(lst, newTail);
 }
 

@@ -10,6 +10,7 @@
 void printList(SingleSourceMovesList* lst);
 void printTreeLDR(SingleSourceMovesTree* tr);
 void printTreeLDRHelper(SingleSourceMovesTreeNode* root);
+void printListAllOptions(MultipleSourceMovesList* lst);
 
 
 void main()
@@ -26,23 +27,23 @@ void main()
 	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
 	};
 
-	checkersPos src = {'B', '2'};  ///H4,F2,D4,B6
+	checkersPos src = {'A', '7'};  ///H4,F2,D4,B6
 	printf("Initial Board:\n");
 	printBoard(board);
 	printf("\n");
 	
 
 
-	SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
+	//SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
 
 
-	printf("\nprint in-order\n");
-	printTreeLDR(tree);
+//	printf("\nprint in-order\n");
+	//printTreeLDR(tree);
 
-	SingleSourceMovesList* listRes;
-	listRes = FindSingleSourceOptimalMove(tree);
-
-	printList(listRes);
+//	SingleSourceMovesList* listRes;
+//	listRes = FindSingleSourceOptimalMove(tree);
+	printListAllOptions(FindAllPossiblePlayerMoves(board, 'T'));
+//	printList(listRes);
 
 
 	//typedef struct _SingleSourceMovesTreeNode
@@ -79,6 +80,17 @@ void printList(SingleSourceMovesList* lst)
 	}
 }
 
+void printListAllOptions(MultipleSourceMovesList* lst)
+{
+	MultipleSourceMovesListCell* curr = lst->head;
+	int count = 1;
+
+	while (curr != NULL)
+	{
+		printList(curr->single_source_moves_list);
+		curr = curr->next;
+	}
+}
 
 void printTreeLDR(SingleSourceMovesTree* tr)
 {
