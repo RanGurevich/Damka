@@ -199,6 +199,7 @@ SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int t
 }
 
 void updateBoard(Board board, checkersPos* newPos, checkersPos* currPos, checkersPos* capturedPos, SingleSourceMovesTreeNode* moveNode) {
+// need to remove movenode not in use
 	char playerToMove = board[convertRow(currPos)][convertCol(currPos)];
 	board[convertRow(currPos)][convertCol(currPos)] = EMPTY_SLOT;
 	if (capturedPos) {

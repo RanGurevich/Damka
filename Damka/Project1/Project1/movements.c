@@ -6,6 +6,7 @@
 #include "boardAndMovements.h"
 
 
+
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree) {
 	SingleSourceMovesList* list = (SingleSourceMovesList*)(malloc(sizeof(SingleSourceMovesList)));
 	if (!list) {
