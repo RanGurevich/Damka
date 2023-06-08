@@ -1,3 +1,7 @@
 ﻿  gameManegemant.c
-C:\Users\ran70\OneDrive\שולחן העבודה\Damka\Damka\Project1\Project1\gameManegemant.c(81,6): warning C4101: 'i': unreferenced local variable
-  Project1.vcxproj -> C:\Users\ran70\OneDrive\שולחן העבודה\Damka\Damka\Project1\Debug\Project1.exe
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(93,9): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(93,9): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(93,9): message : the missing variadic argument 2 is required by format string '%d'
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(81,6): warning C4101: 'i': unreferenced local variable
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(97,6): warning C4101: 'i': unreferenced local variable
+  Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Debug\Project1.exe
