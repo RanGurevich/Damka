@@ -122,7 +122,7 @@ void movePlayerLeft(Board board, SingleSourceMovesTreeNode* moveNode, checkersPo
 	}
 	//("col: %c\n", moveNode->pos->col);
 	//printf("row:%c\n", moveNode->pos->row);
-	printf("\n capture: %d\n", moveNode->total_captures_so_far);
+	//printf("\n capture: %d\n", moveNode->total_captures_so_far);
 }
 
 void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionRight, checkersPos* newPositionRight, char opponentPlayer, int totalCaptures)
@@ -139,7 +139,7 @@ void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersP
 	}
 	//printf("col: %c\n", moveNode->pos->col);
 	//printf("row:%c\n", moveNode->pos->row);
-	printf("\n capture: %d\n", moveNode->total_captures_so_far);
+	//printf("\n capture: %d\n", moveNode->total_captures_so_far);
 }
 
 void regularMove(SingleSourceMovesTreeNode *moveNode, checkersPos *newPosition, checkersPos* src, Board board, int totalCaptures, int playOptionIndex) {
@@ -152,9 +152,9 @@ void regularMove(SingleSourceMovesTreeNode *moveNode, checkersPos *newPosition, 
 		movementToAdd->pos = newPosition;
 		duplicateBoard(board, movementToAdd);
 		updateBoard(movementToAdd->board, newPosition, src, NULL, movementToAdd);
-		printf("POS: %d\n", playOptionIndex);
-		printBoard(movementToAdd->board);
-		printf("XXXXX");
+		//printf("POS: %d\n", playOptionIndex);
+		//printBoard(movementToAdd->board);
+		//printf("XXXXX");
 		moveNode->next_move[playOptionIndex] = movementToAdd;
 	}
 }
@@ -176,9 +176,9 @@ SingleSourceMovesTreeNode* captureMove(SingleSourceMovesTreeNode* moveNode, chec
 	duplicateBoard(moveNode->board, movementToAdd->board);
 	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
 	//moveNode->next_move[playOptionIndex] = movementToAdd;
-	printf("POS: %d\n", playOptionIndex);
-	printBoard(movementToAdd->board);
-	printf("XXXXX");
+	//printf("POS: %d\n", playOptionIndex);
+	//printBoard(movementToAdd->board);
+	//printf("XXXXX");
 	free(capturedPlayer);
 	return movementToAdd;
 }

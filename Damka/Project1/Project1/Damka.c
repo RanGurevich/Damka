@@ -61,7 +61,7 @@ void main()
 	//printf("Board after Operations:\n");
 	//printBoard(tree->source->next_move[1]->board);
 	//printf("\n");
-	Turn(board, 'T');
+	PlayGame(board, 'T');
 }
 
 //void printList(SingleSourceMovesList* lst)

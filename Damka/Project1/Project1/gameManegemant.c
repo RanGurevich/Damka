@@ -18,12 +18,16 @@ void printList(SingleSourceMovesList* lst)
 }
 
 void Turn(Board board, Player player) {
-	printf("%c", player);
 	MultipleSourceMovesList* allMoves = FindAllPossiblePlayerMoves(board, player);
 	SingleSourceMovesList* bestPlay = findBestMove(allMoves, player);
 	//printList(bestPlay);
 	setNewBoard(board, bestPlay, player);
-	printf("FINAL BOARD: \n");
+	printData(bestPlay, board);
+
+}
+
+void printData(SingleSourceMovesList* bestPlay, Board board) {
+	printf("%c%c -> %c%c \n", bestPlay->head->position->row, bestPlay->head->position->col, bestPlay->tail->position->row, bestPlay->tail->position->col);
 	printBoard(board);
 }
 
@@ -72,3 +76,33 @@ void setNewBoard(Board board, SingleSourceMovesList* bestPlay, Player player) {
 		currBefore = currBefore->next;
 	}
  }
+
+void PlayGame(Board board, Player starting_playing) {
+	int i;
+	while(isWon(board, starting_playing))
+	{
+		printf("%c's turn: \n", starting_playing);
+		Turn(board, starting_playing);
+		starting_playing = (starting_playing == PLAYER_B ? PLAYER_T : PLAYER_B);
+
+	}
+}
+
+bool isWon(Board board, Player player) {
+	int i, j;
+
+	if (player == PLAYER_T)
+	{
+		for (i ==7,j=0; i< BOARD_SIZE - 1;j++ )
+	}
+	int indexRunWinCheck;
+	for (indexRunWinCheck = 0; indexRunWinCheck < BOARD_SIZE; indexRunWinCheck++)
+	{
+		if(board[indexRunWinCheck][])
+		if (board[player == PLAYER_T ? BOARD_SIZE - 1 : 0][indexRunWinCheck] == player) {
+			return true;
+		}
+	}
+	return false;
+
+}

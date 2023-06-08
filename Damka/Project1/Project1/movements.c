@@ -99,7 +99,9 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player) 
 				optimalMoves = FindSingleSourceOptimalMove(moveTree);
 				optimalMovesToSend.head = optimalMoves->head;
 				optimalMovesToSend.tail = optimalMoves->tail;
-				insertDataToEndListAllOptions(playerAllOptionsList, &optimalMovesToSend, NULL);
+				if (optimalMoves->head != optimalMoves->tail) {
+					insertDataToEndListAllOptions(playerAllOptionsList, &optimalMovesToSend, NULL);
+				}
 				//printListAllOptionsX(optimalMoves);
 			}
 			//printf("i %d j %d\n", i, j);
