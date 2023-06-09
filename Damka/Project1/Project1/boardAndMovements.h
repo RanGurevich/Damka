@@ -2,7 +2,7 @@
 #include "structs.h"
 #include "utills.h"
 
-void allocationFailure();
+//void allocationFailure();
 void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode);
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src);
 SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures);

@@ -62,6 +62,12 @@ void main()
 	//printBoard(tree->source->next_move[1]->board);
 	//printf("\n");
 	PlayGame(board, 'T');
+
+
+
+	///////do free functions here!!! 
+
+
 }
 
 //void printList(SingleSourceMovesList* lst)

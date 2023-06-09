@@ -27,7 +27,7 @@ void Turn(Board board, Player player) {
 }
 
 void printData(SingleSourceMovesList* bestPlay, Board board) {
-	printf("%c%c -> %c%c \n", bestPlay->head->position->row, bestPlay->head->position->col, bestPlay->tail->position->row, bestPlay->tail->position->col);
+	printf("%c%c -> %c%c \n", bestPlay->head->position->row, bestPlay->head->position->col + 1, bestPlay->tail->position->row , bestPlay->tail->position->col + 1);
 	printBoard(board);
 }
 
@@ -78,16 +78,17 @@ void setNewBoard(Board board, SingleSourceMovesList* bestPlay, Player player) {
  }
 
 void PlayGame(Board board, Player starting_playing) {
-	int i, numOfMoves;
-	numOfMoves = 0;
-	while(true)
+	int i, numOfMoves = 0;
+	bool winning = false;
+
+	while(!winning)
 	{
-		printf("%c's turn: \n", starting_playing);
+		printf("\n%c's turn: \n", starting_playing);
 		Turn(board, starting_playing);
-		if (isWon(board, starting_playing)) {
-			break;
-		}
-		starting_playing = (starting_playing == PLAYER_B ? PLAYER_T : PLAYER_B);
+		if (isWon(board, starting_playing)) 
+			winning = true;
+		else
+			starting_playing = (starting_playing == PLAYER_B ? PLAYER_T : PLAYER_B);
 	}
 	printf("\n%c wins!\n", starting_playing);
 	printf("%c preformed %d moves", numOfMoves);
@@ -95,7 +96,7 @@ void PlayGame(Board board, Player starting_playing) {
 
 bool isWon(Board board, Player player) {
 	int i, j;
-
+	
 	for (j = 0; j < BOARD_SIZE; j++) {
 		if ((player == PLAYER_T && board[7][j] == player) ||
 			(player != PLAYER_T && board[0][j] == player)) {
