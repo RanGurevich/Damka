@@ -21,7 +21,6 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 		FindSingleSourceOptimalMoveHelper(moves_tree->source, list, getCharOnBoard(moves_tree->source->board, moves_tree->source->pos));
 	}
 
-	//freeMoveTree(moves_tree);
 	return list;
 }
 
@@ -92,10 +91,12 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 	checkersPos* pos = (checkersPos*)malloc(sizeof(checkersPos));
 	SingleSourceMovesList* optimalMoves = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
 	SingleSourceMovesList optimalMovesToSend;
-	if (!playerAllOptionsList || !moveTree || !pos || !optimalMoves) {
+
+	if (!playerAllOptionsList || !moveTree || !pos || !optimalMoves) 
 		allocationFailure();
-	}
+
 	makeEmptyListAllOptions(playerAllOptionsList);
+
 	for (i = 0; i < BOARD_SIZE; i++)
 	{
 		for (j = 0; j < BOARD_SIZE; j++)
@@ -116,7 +117,9 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 			//printf("i %d j %d\n", i, j);
 		}
 	}
-	free(pos);
+
+	freeMoveTree(moveTree);
+	
 	return playerAllOptionsList;
 }
 
