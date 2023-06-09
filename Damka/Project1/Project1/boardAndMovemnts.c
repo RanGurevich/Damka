@@ -2,20 +2,19 @@
 #include "structs.h"
 #include "utills.h"
 
-/*FindSingleSourceMoveHelper function is responsible for finding possible moves for a single checkers piece on the board
-and returning a tree node containing the move options*/
+/*FindSingleSourceMove function is responsible for finding possible moves for a single checkers tool on the board
+and returning a tree of options move*/
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree* treeMove = malloc(sizeof(SingleSourceMovesTree));
 	if (!treeMove) {
 		allocationFailure();
 	}
-	treeMove->source = FindSingleSourceMoveHelper(board, src, 0); //calling for helper
+	treeMove->source = FindSingleSourceMoveHelper(board, src, 0); // calling for helper
 	return treeMove;
 }
 
-
-SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures)
+SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* src, int totalCaptures) // helper function for FindSingleSourceMove
 {
 	SingleSourceMovesTreeNode* moveNode;
 	checkersPos* newPositionRight = NULL, * newPositionLeft = NULL, * captureMovingPositionRight = NULL, * captureMovingPositionLeft = NULL;
@@ -28,7 +27,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 	if (!checkValidation(board, src))
 		return NULL;
 
-	switch (currentPlayer)
+	switch (currentPlayer) // checking for a specific checkers piece
 	{
 	case PLAYER_T:
 		opponentPlayer = PLAYER_B;
@@ -37,20 +36,21 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 	case PLAYER_B:
 		opponentPlayer = PLAYER_T;
 
-		break;// now we check if we can move right or left //check right
+		break;
 	default:
 		break;
 	}
 	moveNode = buildNewMoveNode(board, src, totalCaptures, NULL, NULL);
 
-	setPosAndCap(src, newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft, toolMovingPosition);
+	setPosAndCap(src, newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft, toolMovingPosition); // setting postions and possible captures
 
-	movePlayerLeft(board, moveNode, src, captureMovingPositionLeft, newPositionLeft, opponentPlayer, totalCaptures);
+	movePlayerLeft(board, moveNode, src, captureMovingPositionLeft, newPositionLeft, opponentPlayer, totalCaptures); // recursive calls for moving the pieace right or left
 	movePlayerRight(board, moveNode, src, captureMovingPositionRight, newPositionRight, opponentPlayer, totalCaptures);
 
 	return moveNode;
 }
 
+/* allocate memory for new positions and capture positions*/
 void allocationsPosAndCap(checkersPos** newPositionRight, checkersPos** newPositionLeft, checkersPos** captureMovingPositionRight, checkersPos** captureMovingPositionLeft)
 {
 	*newPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
@@ -70,6 +70,7 @@ void allocationsPosAndCap(checkersPos** newPositionRight, checkersPos** newPosit
 		allocationFailure();
 }
 
+/*set positions and captures based on the source position and tool moving position*/
 void setPosAndCap(checkersPos* src, checkersPos* newPositionRight, checkersPos* newPositionLeft, checkersPos* captureMovingPositionRight, checkersPos* captureMovingPositionLeft, int toolMovingPosition)
 {
 	newPositionRight->row = src->row - toolMovingPosition;
@@ -82,48 +83,51 @@ void setPosAndCap(checkersPos* src, checkersPos* newPositionRight, checkersPos* 
 	captureMovingPositionLeft->col = newPositionLeft->col - 1;
 }
 
+/* movePlayerLeft creates a new TreeNode if there is a possible move or capture to the left */
 void movePlayerLeft(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionLeft, checkersPos* newPositionLeft, char opponentPlayer, int totalCaptures)
 {
 	SingleSourceMovesTreeNode* leftMove;
-	if (checkPosValid(captureMovingPositionLeft) && getCharOnBoard(board, captureMovingPositionLeft) == EMPTY_SLOT && getCharOnBoard(board, newPositionLeft) == opponentPlayer) {
-		// do capture
-		leftMove = captureMove(moveNode, newPositionLeft, captureMovingPositionLeft, src, board, totalCaptures, LEFT);
-		moveNode->next_move[LEFT] = FindSingleSourceMoveHelper(leftMove->board, leftMove->pos, leftMove->total_captures_so_far);
-	}
-	else 
+
+	if (checkPosValid(captureMovingPositionLeft) && getCharOnBoard(board, captureMovingPositionLeft) == EMPTY_SLOT && getCharOnBoard(board, newPositionLeft) == opponentPlayer) // check if a capture move is possible
 	{
-		regularMove(moveNode, newPositionLeft, src, board, totalCaptures, LEFT);
+		leftMove = captureMove(moveNode, newPositionLeft, captureMovingPositionLeft, src, board, totalCaptures, LEFT); // creates a new move TreeNode for the captured move
+		moveNode->next_move[LEFT] = FindSingleSourceMoveHelper(leftMove->board, leftMove->pos, leftMove->total_captures_so_far); // assign the captured node in the correct position and call for the recursive function
+	}
+	else  
+	{
+		regularMove(moveNode, newPositionLeft, src, board, totalCaptures, LEFT); // if three is no way for capture assign and create a regular TreeNode
 		free(captureMovingPositionLeft);
 	}
 }
 
+/* movePlayerLeft creates a new TreeNode if there is a possible move or capture to the right */
 void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionRight, checkersPos* newPositionRight, char opponentPlayer, int totalCaptures)
 {
 	SingleSourceMovesTreeNode* rightMove;
-	if (checkPosValid(captureMovingPositionRight) && getCharOnBoard(board, captureMovingPositionRight) == EMPTY_SLOT && getCharOnBoard(board, newPositionRight) == opponentPlayer)
+	if (checkPosValid(captureMovingPositionRight) && getCharOnBoard(board, captureMovingPositionRight) == EMPTY_SLOT && getCharOnBoard(board, newPositionRight) == opponentPlayer) // check if a capture move is possible
 	{
 		// do capture
-		rightMove = captureMove(moveNode, newPositionRight, captureMovingPositionRight, src, board, totalCaptures, RIGHT);
-		moveNode->next_move[RIGHT] = FindSingleSourceMoveHelper(rightMove->board, rightMove->pos, rightMove->total_captures_so_far);
+		rightMove = captureMove(moveNode, newPositionRight, captureMovingPositionRight, src, board, totalCaptures, RIGHT); // creates a new move TreeNode for the captured move
+		moveNode->next_move[RIGHT] = FindSingleSourceMoveHelper(rightMove->board, rightMove->pos, rightMove->total_captures_so_far); // assign the captured node in the correct position and call for the recursive function
 	}
 	else 
 	{
-		regularMove(moveNode, newPositionRight, src, board, totalCaptures, RIGHT);
+		regularMove(moveNode, newPositionRight, src, board, totalCaptures, RIGHT); // if three is no way for capture assign and create a regular TreeNode
 		free(captureMovingPositionRight);
 	}
 }
 
+/*regularMove function create and assign a regular TreeNode */
 void regularMove(SingleSourceMovesTreeNode* moveNode, checkersPos* newPosition, checkersPos* src, Board board, int totalCaptures, int playOptionIndex)
 {
 	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, newPosition, totalCaptures, NULL, NULL);
 	moveNode->next_move[playOptionIndex] = NULL;
 
-	if (checkPosValid(newPosition) && board[convertRow(newPosition)][convertCol(newPosition)] == EMPTY_SLOT && totalCaptures == 0)
+	if (checkPosValid(newPosition) && board[convertRow(newPosition)][convertCol(newPosition)] == EMPTY_SLOT && totalCaptures == 0) //checks for valid position
 	{
-		// we can move to here
 		movementToAdd->pos = newPosition;
 		duplicateBoard(board, movementToAdd);
-		updateBoard(movementToAdd->board, newPosition, src, NULL, movementToAdd);
+		updateBoard(movementToAdd->board, newPosition, src, NULL);
 		moveNode->next_move[playOptionIndex] = movementToAdd;
 	}
 	else
@@ -133,12 +137,14 @@ void regularMove(SingleSourceMovesTreeNode* moveNode, checkersPos* newPosition, 
 	}
 }
 
+/*captureMove function create and assign a captureMove TreeNode */
 SingleSourceMovesTreeNode* captureMove(SingleSourceMovesTreeNode* moveNode, checkersPos* capturedPlayer, checkersPos* capturePos, checkersPos* src, Board board, int totalCaptures, int playOptionIndex)
 {
 	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, capturePos, totalCaptures + 1, NULL, NULL);
 	movementToAdd->pos = capturePos;
 	duplicateBoard(moveNode->board, movementToAdd); //duplicateBoard(moveNode->board, movementToAdd->board);
-	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
+	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer);
+
 	//moveNode->next_move[playOptionIndex] = movementToAdd; /////////////////////////////////////////////////////////////////check with run this was in remark but this it should be there
 
 	///*printf("POS: %d\n", playOptionIndex);
@@ -149,23 +155,24 @@ SingleSourceMovesTreeNode* captureMove(SingleSourceMovesTreeNode* moveNode, chec
 	return movementToAdd;
 }
 
+/* buildNewMoveNode functions creates a nre TreeNode with a given parameters*/
 SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int totalCaptures, SingleSourceMovesTreeNode* leftNode, SingleSourceMovesTreeNode* rightNode)
 {
 	SingleSourceMovesTreeNode* moveNode = (SingleSourceMovesTreeNode*)malloc(sizeof(SingleSourceMovesTreeNode));
 	if (moveNode == NULL)
 		allocationFailure();
 
-	duplicateBoard(board, moveNode);
+	duplicateBoard(board, moveNode); // updating the board for each TreeNode
 	moveNode->pos = src;
 	moveNode->total_captures_so_far = totalCaptures; 
 	moveNode->next_move[LEFT] = leftNode;
 	moveNode->next_move[RIGHT] = rightNode;
+
 	return moveNode;
 }
 
-void updateBoard(Board board, checkersPos* newPos, checkersPos* currPos, checkersPos* capturedPos, SingleSourceMovesTreeNode* moveNode)
+void updateBoard(Board board, checkersPos* newPos, checkersPos* currPos, checkersPos* capturedPos) // Update the board after a move is made
 {
-	// need to remove movenode not in use
 	char playerToMove = board[convertRow(currPos)][convertCol(currPos)];
 	board[convertRow(currPos)][convertCol(currPos)] = EMPTY_SLOT;
 	if (capturedPos) {
@@ -174,7 +181,7 @@ void updateBoard(Board board, checkersPos* newPos, checkersPos* currPos, checker
 	board[convertRow(newPos)][convertCol(newPos)] = playerToMove;
 }
 
-void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode)
+void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode) //creates a duplication of the board
 {
 	int i, j;
 
@@ -186,86 +193,3 @@ void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode)
 		}
 	}
 }
-
-void printBoard(Board board)
-{
-	printf(" +-+-+-+-+-+-+-+-+-+\n");
-	printf(" + |1|2|3|4|5|6|7|8|\n");
-	printf(" +-+-+-+-+-+-+-+-+-+\n");
-	for (int row = 0; row < BOARD_SIZE; row++)
-	{
-		printf(" |%c|", 'A' + row);
-		for (int col = 0; col < BOARD_SIZE; col++)
-		{
-			printf("%c|", board[row][col]);
-		}
-		printf("\n");
-		printf(" +-+-+-+-+-+-+-+-+-+\n");
-	}
-}
-
-
-/*printf("col: %c\n", moveNode->pos->col);
-printf("row:%c\n", moveNode->pos->row);
-printf("\n capture: %d\n", moveNode->total_captures_so_far);*/
-
-
-//("col: %c\n", moveNode->pos->col);
-//printf("row:%c\n", moveNode->pos->row);
-//printf("\n capture: %d\n", moveNode->total_captures_so_far);
-
-//printf("POS: %d\n", playOptionIndex);
-		//printBoard(movementToAdd->board);
-		//printf("XXXXX");
-
-
-//void captureMove (SingleSourceMovesTreeNode* moveNode, checkersPos *capturedPlayer, checkersPos *capturePos, checkersPos* src, Board board, int totalCaptures, int playOptionIndex) {
-//	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, capturePos, totalCaptures+1, NULL, NULL);
-//	movementToAdd->pos = capturePos;
-//	duplicateBoard(board, movementToAdd);
-//	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
-//	moveNode->next_move[playOptionIndex] = movementToAdd;
-//	printf("POS: %d\n", playOptionIndex);
-//	printBoard(moveNode->next_move[playOptionIndex]->board);
-//	printf("XXXXX");
-//	free(capturedPlayer);
-//}
-
-//moveNode->next_move[playOptionIndex] = movementToAdd;
-	//printf("POS: %d\n", playOptionIndex);
-	//printBoard(movementToAdd->board);
-	//printf("XXXXX");
-
-//	allocationsPosAndCap(newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft);
-	/*newPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!newPositionRight)
-		allocationFailure();
-
-	newPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!newPositionLeft)
-		allocationFailure();
-
-	captureMovingPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!captureMovingPositionRight)
-		allocationFailure();
-
-	captureMovingPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!captureMovingPositionLeft)
-		allocationFailure();*/
-
-
-//void printBoard(Board board)
-//{
-//	printf("   0 1 2 3 4 5 6 7\n");
-//	printf("  -----------------\n");
-//	for (int row = 0; row < BOARD_SIZE; row++)
-//	{
-//		printf("%d |", row);
-//		for (int col = 0; col < BOARD_SIZE; col++)
-//		{
-//			printf("%c|", board[row][col]);
-//		}
-//		printf("\n");
-//		printf("  -----------------\n");
-//	}
-//}

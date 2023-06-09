@@ -119,6 +119,24 @@ bool isWon(Board board, Player player) {
 	return false;
 }
 
+void printBoard(Board board)
+{
+	printf(" +-+-+-+-+-+-+-+-+-+\n");
+	printf(" + |1|2|3|4|5|6|7|8|\n");
+	printf(" +-+-+-+-+-+-+-+-+-+\n");
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		printf(" |%c|", 'A' + row);
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			printf("%c|", board[row][col]);
+		}
+		printf("\n");
+		printf(" +-+-+-+-+-+-+-+-+-+\n");
+	}
+}
+
+
 void printList(SingleSourceMovesList* lst)
 {
 	SingleSourceMovesListCell* curr = lst->head;
