@@ -8,7 +8,8 @@
 
 //////////////////////////checks for united with List.C
 
-/* FindSingleSourceOptimalMove finds the optimal move for a single checkers pieceand returns a list of the best path according to the given rules */
+/* FindSingleSourceOptimalMove finds the optimal move for a single checkers piece 
+and returns a list of the best path according to the given rules */
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree)
 {
 	SingleSourceMovesList* list = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
@@ -19,10 +20,9 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 
 	if (moves_tree && moves_tree->source) 
 	{
-		//// recursively find the optimal move
+		// recursively find the optimal move
 		FindSingleSourceOptimalMoveHelper(moves_tree->source, list, getCharOnBoard(moves_tree->source->board, moves_tree->source->pos));
 	}
-
 	return list;
 }
 
@@ -48,19 +48,19 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 		if (currPlayer == PLAYER_T)
 		{
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list, currPlayer);
-			//not sure if should be free here
+			//not sure if should be free here////////////////////////////////////
 		}
 		else
 		{
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
-			//not sure if should be free here
+			//not sure if should be free here///////////////////////////////////
 		}
 	}
 	else
 	{
 		if (treeNode->next_move[LEFT])
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
-		//not sure if should be free here
+		//not sure if should be free here///////////////////////////////////////
 	}
 }
 
@@ -122,16 +122,3 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 		
 	return playerAllOptionsList;
 }
-
-
-//SingleSourceMovesList* optimalMoves = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
-//SingleSourceMovesTree *moveTree = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree)); //check allox
-
-
-/*int right = 0; ///////////////////////check with ran
-	int left = 0;
-	if (!treeNode)
-	{
-		return 0;
-	}
-	return numbersOfNodesInTree(treeNode->next_move[RIGHT]) + numbersOfNodesInTree(treeNode->next_move[LEFT]) + 1;*/

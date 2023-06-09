@@ -48,8 +48,6 @@ void insertNodeToEndListSingleSource(SingleSourceMovesList* lst, SingleSourceMov
 	tail->next = NULL;
 }
 
-
-
 void makeEmptyListAllOptions(MultipleSourceMovesList* lst)
 {
 	lst->head = NULL;

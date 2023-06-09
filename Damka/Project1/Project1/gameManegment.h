@@ -6,6 +6,7 @@
 #include "boardAndMovements.h"
 
 void Turn(Board board, Player player);
+SingleSourceMovesList* findBestMove(MultipleSourceMovesList* allMoves, Player playTurn);
 void setNewBoard(Board board, SingleSourceMovesList* bestPlay, Player player);
 void PlayGame(Board board, Player starting_playing);
 void printData(SingleSourceMovesList* bestPlay, Board board);

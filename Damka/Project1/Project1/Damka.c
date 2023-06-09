@@ -12,11 +12,12 @@ void printList(SingleSourceMovesList* lst);
 void printTreeLDR(SingleSourceMovesTree* tr);
 void printTreeLDRHelper(SingleSourceMovesTreeNode* root);
 void printListAllOptions(MultipleSourceMovesList* lst);
+void printGameStart(Board board);
 
 
 void main()
 {
-	/*Board board = {
+	Board board = {
 	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
 	   { 'T', ' ', 'T', ' ', ' ', ' ', 'T', ' ' },
 	   { ' ', 'T', ' ', 'T', ' ', ' ', ' ', 'T' },
@@ -25,10 +26,10 @@ void main()
 	   { 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ' },
 	   { ' ', 'B', ' ', 'B', ' ', 'T', ' ', 'B' },
 	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
-	};*/
+	};
 
 
-	Board board = {
+	/*Board board = {
 	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
 	   { 'T', ' ', 'T', ' ', 'T', ' ', 'T', ' ' },
 	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
@@ -37,7 +38,7 @@ void main()
 	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' },
 	   { ' ', 'B', ' ', 'B', ' ', 'B', ' ', 'B' },
 	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
-	};
+	};*/
 	
 	//Board board = {
  //  { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
@@ -51,16 +52,7 @@ void main()
 	//};
 
 	
-	printf("===================================================\n");
-	printf(" _    _      _                            _          \n");
-	printf("| |  | |    | |                          | |         \n");
-	printf("| |  | | ___| | ___ ___  _ __ ___   ___  | |_ ___    \n");
-	printf("| |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\   \n");
-	printf("\\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) |  \n");
-	printf(" \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/   \n");
-
-	printf("\n                Checkers Game                    \n");
-	printf("===================================================\n\n");
+	//printGameStart(board);
 
 	//printf("   ____ _                          _    \n");
 	//printf("  / ___| |__   __ _ _ __ __ _  ___| | __\n");
@@ -85,8 +77,31 @@ void main()
 	/*------------------------------------------------------------ -*/
 
 
-	
+	/////------------check 2-------------------------------------//
+	//checkersPos src = { 'A', '1' };
 
+	//SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
+	//printf("\nprint in-order\n");
+	////printTreeLDR(tree);
+	//printBoard(board);
+	//SingleSourceMovesList* listRes;
+	//listRes = FindSingleSourceOptimalMove(tree);
+	//printList(listRes);
+
+	/*------------------------------------------------------------ -*/
+
+	/////------------check 3-------------------------------------//
+	checkersPos src = { 'C', '3' };
+
+	SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
+	printf("\nprint in-order\n");
+	printTreeLDR(tree);
+	printBoard(board);
+	SingleSourceMovesList* listRes;
+	listRes = FindSingleSourceOptimalMove(tree);
+	printList(listRes);
+	printListAllOptions(FindAllPossiblePlayerMoves(board, 'B'));
+	/*------------------------------------------------------------ -*/
 
 	//SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
 
@@ -116,7 +131,7 @@ void main()
 	//printf("\n");
 	// 
 	// 
-	PlayGame(board, 'B');
+	//PlayGame(board, 'B');
 
 
 
@@ -141,6 +156,28 @@ void main()
 //		curr = curr->next;
 //	}
 //}
+
+void printGameStart(Board board)
+{
+	printf("===================================================\n");
+	printf(" _    _      _                            _          \n");
+	printf("| |  | |    | |                          | |         \n");
+	printf("| |  | | ___| | ___ ___  _ __ ___   ___  | |_ ___    \n");
+	printf("| |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\   \n");
+	printf("\\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) |  \n");
+	printf(" \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/   \n");
+
+	printf("\n                Checkers Game                    \n");
+	printf("===================================================\n\n");
+	printf("\nHello! and welcone to the checkers game:\n");
+	printf("In the upcoming checkers game, the computer will play against itself.\n"
+		"You need to choose the starting player by pressing the T or B key.\n"
+		"Press the Hunter key to begin the game.\n\n");
+
+	/*printf("initial board:\n");
+	printBoard(board);
+	printf("\n");*/
+}
 
 void printListAllOptions(MultipleSourceMovesList* lst)
 {
