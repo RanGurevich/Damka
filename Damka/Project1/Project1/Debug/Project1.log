@@ -1,12 +1,1 @@
-﻿  Damka.c
-  gameManegemant.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(47,67): warning C4020: 'updateBoard': too many actual parameters
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(78,78): warning C4020: 'updateBoard': too many actual parameters
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(87,6): warning C4101: 'i': unreferenced local variable
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(106,6): warning C4101: 'i': unreferenced local variable
-  movements.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(19,77): warning C4020: 'FindSingleSourceOptimalMoveHelper': too many actual parameters
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(46,1): warning C4029: declared formal parameter list different from definition
-  Generating Code...
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(80): warning C4715: 'FindSingleSourceOptimalMoveHelper': not all control paths return a value
-  Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Debug\Project1.exe
+﻿  Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Debug\Project1.exe

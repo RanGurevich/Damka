@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __BOARD_AND_MOVEMENTS_H
+#define __BOARD_AND_MOVEMENTS_H
+
 #include "structs.h"
 #include "utills.h"
 
@@ -13,3 +15,7 @@ SingleSourceMovesTreeNode* captureMove(SingleSourceMovesTreeNode* moveNode, chec
 SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int totalCaptures, SingleSourceMovesTreeNode* leftNode, SingleSourceMovesTreeNode* rightNode);
 void updateBoard(Board board, checkersPos* newPos, checkersPos* currPos, checkersPos* capturedPos);
 void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode);
+void freeMoveTree(SingleSourceMovesTree* tree);
+void freeMoveTreeNodeHelper(SingleSourceMovesTreeNode* source);
+
+#endif
