@@ -35,7 +35,8 @@ void main()
 	   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' },
 	   { ' ', 'B', ' ', 'B', ' ', 'B', ' ', 'B' },
-	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }*/
+	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
+	};*/
 	
 	//Board board = {
  //  { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
@@ -48,22 +49,22 @@ void main()
  //  { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
 	//};
 
-	checkersPos src = { 'H', '6' };
-
-   // checkerspos src = {'a', '7'};  ///h4,f2,d4,b6
-	printf("initial board:\n");
-	printBoard(board);
-	printf("\n");
+	///checkersPos src = { 'H', '6' };
+	//checkersPos src = { 'H', '6' };
+ //    src = {'a', '7'};  ///h4,f2,d4,b6
+	//printf("initial board:\n");
+	//printBoard(board);
+	//printf("\n");
 	//
 	// 
-	///////------------check 1-------------------------------------//
-	//checkersPos src = { 'A', '7' };
+	/////------------check 1-------------------------------------//
+	checkersPos src = { 'H', '6' };
 
-	/*SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
+	SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
 	printf("\nprint in-order\n");
 	printTreeLDR(tree);
-	printBoard(board);*/
-	//-------------------------------------------------------------//
+	printBoard(board);
+	/*------------------------------------------------------------ -*/
 
 
 	
@@ -97,7 +98,7 @@ void main()
 	//printf("\n");
 	// 
 	// 
-	PlayGame(board, 'T');
+	//PlayGame(board, 'B');
 
 
 
