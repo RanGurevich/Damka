@@ -120,7 +120,7 @@ void PlayGame(Board board, Player starting_playing)
 	}
 	printf("\n%c wins!\n", starting_playing);
 	printf("%c preformed %d moves\n",starting_playing, starting_playing == PLAYER_T ? numOfMovesT : numOfMovesB);
-	printf("%c performed the highest number of captures in a single move - %d", playerThatDidTheMaxCaptures, maxCapturesInSingleMoves);
+	printf("%c performed the highest number of captures in a single move - %d\n", playerThatDidTheMaxCaptures, maxCapturesInSingleMoves);
 }
 
 bool isWon(Board board, Player player) {

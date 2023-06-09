@@ -194,7 +194,7 @@ void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode) //creates 
 	}
 }
 
-void freeMoveTree(SingleSourceMovesTree* tree) 
+void freeMoveTree(SingleSourceMovesTree* tree) // free MoveTree function
 {
 	if (tree == NULL) 
 		return;
@@ -202,7 +202,7 @@ void freeMoveTree(SingleSourceMovesTree* tree)
 	free(tree);
 }
 
-void freeMoveTreeNodeHelper(SingleSourceMovesTreeNode* source)
+void freeMoveTreeNodeHelper(SingleSourceMovesTreeNode* source) // free MoveTree function helper
 {
 	if (source == NULL)
 		return;

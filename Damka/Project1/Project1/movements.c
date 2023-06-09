@@ -63,13 +63,6 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 
 int findTheBiggerCapture(SingleSourceMovesTreeNode* treeNode)
 {
-	/*int right = 0; ///////////////////////check with ran
-	int left = 0;
-	if (!treeNode)
-	{
-		return 0;
-	}
-	return numbersOfNodesInTree(treeNode->next_move[RIGHT]) + numbersOfNodesInTree(treeNode->next_move[LEFT]) + 1;*/
 	if (!treeNode) 
 		return 0;
 	
@@ -86,13 +79,14 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 {
 	int i, j;
 
-	MultipleSourceMovesList* playerAllOptionsList = (MultipleSourceMovesList*)malloc(sizeof(MultipleSourceMovesList));
-	SingleSourceMovesTree *moveTree = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree)); //check allox
-	checkersPos* pos = (checkersPos*)malloc(sizeof(checkersPos));
-	SingleSourceMovesList* optimalMoves = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
+	SingleSourceMovesTree* moveTree = NULL;
+	SingleSourceMovesList* optimalMoves = NULL;
 	SingleSourceMovesList optimalMovesToSend;
 
-	if (!playerAllOptionsList || !moveTree || !pos || !optimalMoves) 
+	MultipleSourceMovesList* playerAllOptionsList = (MultipleSourceMovesList*)malloc(sizeof(MultipleSourceMovesList));
+	checkersPos* pos = (checkersPos*)malloc(sizeof(checkersPos));
+
+	if (!playerAllOptionsList || !pos) 
 		allocationFailure();
 
 	makeEmptyListAllOptions(playerAllOptionsList);
@@ -113,6 +107,7 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 					insertDataToEndListAllOptions(playerAllOptionsList, &optimalMovesToSend, NULL);
 				}
 				//printListAllOptions(optimalMoves);
+				free(optimalMoves);
 			}
 			//printf("i %d j %d\n", i, j);
 		}
@@ -124,3 +119,14 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 }
 
 
+//SingleSourceMovesList* optimalMoves = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
+//SingleSourceMovesTree *moveTree = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree)); //check allox
+
+
+/*int right = 0; ///////////////////////check with ran
+	int left = 0;
+	if (!treeNode)
+	{
+		return 0;
+	}
+	return numbersOfNodesInTree(treeNode->next_move[RIGHT]) + numbersOfNodesInTree(treeNode->next_move[LEFT]) + 1;*/
