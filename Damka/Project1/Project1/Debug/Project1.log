@@ -1,4 +1,15 @@
-﻿  boardAndMovemnts.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\boardAndMovemnts.c(185,54): warning C4047: 'function': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'Board'
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\boardAndMovemnts.c(185,47): warning C4024: 'duplicateBoard': different types for formal and actual parameter 2
-  Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Debug\Project1.exe
+﻿  Damka.c
+  Lists.c
+  boardAndMovemnts.c
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\boardAndMovemnts.c(185,54): warning C4047: 'function': 'SingleSourceMovesTreeNode *' differs in levels of indirection from 'Board'
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\boardAndMovemnts.c(185,47): warning C4024: 'duplicateBoard': different types for formal and actual parameter 2
+  gameManegemant.c
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\gameManegemant.c(102,6): warning C4101: 'i': unreferenced local variable
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\gameManegemant.c(121,6): warning C4101: 'i': unreferenced local variable
+  movements.c
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\movements.c(19,77): warning C4020: 'FindSingleSourceOptimalMoveHelper': too many actual parameters
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\movements.c(46,1): warning C4029: declared formal parameter list different from definition
+  utills.c
+  Generating Code...
+C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Project1\movements.c(80): warning C4715: 'FindSingleSourceOptimalMoveHelper': not all control paths return a value
+  Project1.vcxproj -> C:\Users\ran70\Desktop\degree\v3\Damka\Damka\Project1\Debug\Project1.exe

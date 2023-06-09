@@ -1,5 +1,10 @@
 #include "gameManegment.h"
 
+ int maxCapturesInSingleMoves = 0;
+ Player playerThatDidTheMaxCaptures;
+ int totalCapturesT = 0;
+ int totalCapturesB = 0;
+
 void printList(SingleSourceMovesList* lst)
 {
 	SingleSourceMovesListCell* curr = lst->head;
@@ -21,6 +26,22 @@ void Turn(Board board, Player player) {
 	MultipleSourceMovesList* allMoves = FindAllPossiblePlayerMoves(board, player);
 	SingleSourceMovesList* bestPlay = findBestMove(allMoves, player);
 	//printList(bestPlay);
+	if (maxCapturesInSingleMoves < bestPlay->tail->captures)
+	{
+		maxCapturesInSingleMoves = bestPlay->tail->captures;
+		playerThatDidTheMaxCaptures = player;
+	}
+	switch (player)
+	{
+	case PLAYER_T:
+		totalCapturesT += bestPlay->tail->captures;
+		break;
+	case PLAYER_B:
+		totalCapturesB += bestPlay->tail->captures;
+		break;
+	default:
+		break;
+	}
 	setNewBoard(board, bestPlay, player);
 	printData(bestPlay, board);
 
@@ -83,6 +104,7 @@ void PlayGame(Board board, Player starting_playing) {
 
 	while(!winning)
 	{
+		starting_playing == PLAYER_T ? numOfMovesT++ : numOfMovesB++;
 		printf("\n%c's turn: \n", starting_playing);
 		Turn(board, starting_playing);
 		if (isWon(board, starting_playing)) 
@@ -91,12 +113,17 @@ void PlayGame(Board board, Player starting_playing) {
 			starting_playing = (starting_playing == PLAYER_B ? PLAYER_T : PLAYER_B);
 	}
 	printf("\n%c wins!\n", starting_playing);
-	printf("%c preformed %d moves", numOfMoves);
+	printf("%c preformed %d moves\n",starting_playing, starting_playing == PLAYER_T ? numOfMovesT : numOfMovesB);
+	printf("%c performed the highest number of captures in a single move - %d", playerThatDidTheMaxCaptures, maxCapturesInSingleMoves);
 }
 
 bool isWon(Board board, Player player) {
 	int i, j;
 	
+	if (totalCapturesT  == NUMBER_OF_TOOLS || totalCapturesB == NUMBER_OF_TOOLS)
+	{
+		return true;
+	}
 	for (j = 0; j < BOARD_SIZE; j++) {
 		if ((player == PLAYER_T && board[7][j] == player) ||
 			(player != PLAYER_T && board[0][j] == player)) {
