@@ -78,7 +78,7 @@ void setNewBoard(Board board, SingleSourceMovesList* bestPlay, Player player) {
  }
 
 void PlayGame(Board board, Player starting_playing) {
-	int i, numOfMoves = 0;
+	int i, numOfMovesB = 0, numOfMovesT = 0;
 	bool winning = false;
 
 	while(!winning)
