@@ -16,8 +16,18 @@ void printListAllOptions(MultipleSourceMovesList* lst);
 
 void main()
 {
-
 	Board board = {
+	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
+	   { 'T', ' ', 'T', ' ', ' ', ' ', 'T', ' ' },
+	   { ' ', 'T', ' ', 'T', ' ', ' ', ' ', 'T' },
+	   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+	   { ' ', ' ', ' ', 'T', ' ', 'T', ' ', ' ' },
+	   { 'B', ' ', 'B', ' ', ' ', ' ', 'B', ' ' },
+	   { ' ', 'B', ' ', 'B', ' ', 'T', ' ', 'B' },
+	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
+	};
+
+	/*Board board = {
 	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
 	   { 'T', ' ', 'T', ' ', 'T', ' ', 'T', ' ' },
 	   { ' ', 'T', ' ', 'T', ' ', 'T', ' ', 'T' },
@@ -25,8 +35,8 @@ void main()
 	   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' },
 	   { ' ', 'B', ' ', 'B', ' ', 'B', ' ', 'B' },
-	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
-	};
+	   { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }*/
+	
 	//Board board = {
  //  { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
  //  { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
@@ -38,10 +48,24 @@ void main()
  //  { 'B', ' ', 'B', ' ', 'B', ' ', 'B', ' ' }
 	//};
 
-	checkersPos src = {'A', '7'};  ///H4,F2,D4,B6
-	printf("Initial Board:\n");
+	checkersPos src = { 'H', '6' };
+
+   // checkerspos src = {'a', '7'};  ///h4,f2,d4,b6
+	printf("initial board:\n");
 	printBoard(board);
 	printf("\n");
+	//
+	// 
+	///////------------check 1-------------------------------------//
+	//checkersPos src = { 'A', '7' };
+
+	/*SingleSourceMovesTree* tree = FindSingleSourceMove(board, &src);
+	printf("\nprint in-order\n");
+	printTreeLDR(tree);
+	printBoard(board);*/
+	//-------------------------------------------------------------//
+
+
 	
 
 
@@ -71,7 +95,9 @@ void main()
 	//printf("Board after Operations:\n");
 	//printBoard(tree->source->next_move[1]->board);
 	//printf("\n");
-	PlayGame(board, 'B');
+	// 
+	// 
+	PlayGame(board, 'T');
 
 
 

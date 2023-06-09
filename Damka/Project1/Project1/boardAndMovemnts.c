@@ -2,18 +2,6 @@
 #include "structs.h"
 #include "utills.h"
 
-void allocationsPosAndCap(checkersPos** newPositionRight, checkersPos** newPositionLeft, checkersPos** captureMovingPositionRight, checkersPos** captureMovingPositionLeft);
-
-//void allocationsPosAndCap(checkersPos* newPositionRight, checkersPos* newPositionLeft, checkersPos* captureMovingPositionRight, checkersPos* captureMovingPositionLeft);
-void setPosAndCap(checkersPos* src, checkersPos* newPositionRight, checkersPos* newPositionLeft, checkersPos* captureMovingPositionRight, checkersPos* captureMovingPositionLeft, int toolMovingPosition);
-void movePlayerLeft(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionLeft, checkersPos* newPositionLeft, char opponentPlayer, int totalCaptures);
-void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionLeft, checkersPos* newPositionLeft, char opponentPlayer, int totalCaptures);
-bool checkPosValid(checkersPos* src);
-void allocationFailure();
-void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode);
-void regularMove(SingleSourceMovesTreeNode* moveNode, checkersPos* newPosition, checkersPos* src, Board board, int totalCaptures, int playOptionIndex);
-void printBoard(Board board);
-
 SingleSourceMovesTree* FindSingleSourceMove(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree* treeMove = malloc(sizeof(SingleSourceMovesTree));
@@ -32,27 +20,9 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 	checkersPos* newPositionRight = NULL, * newPositionLeft = NULL, * captureMovingPositionRight = NULL, * captureMovingPositionLeft = NULL;
 
 	char currentPlayer = getCharOnBoard(board, src), opponentPlayer;
-	//	char opponentPlayer = currentPlayer == PLAYER_T ? PLAYER_B : PLAYER_T;
 	int toolMovingPosition = 1;
 
 	allocationsPosAndCap(&newPositionRight, &newPositionLeft, &captureMovingPositionRight, &captureMovingPositionLeft); //allocating the positions
-
-//	allocationsPosAndCap(newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft);
-	/*newPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!newPositionRight)
-		allocationFailure();
-
-	newPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!newPositionLeft)
-		allocationFailure();
-
-	captureMovingPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!captureMovingPositionRight)
-		allocationFailure();
-
-	captureMovingPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
-	if (!captureMovingPositionLeft)
-		allocationFailure();*/
 
 	if (!checkValidation(board, src))
 		return NULL;
@@ -70,10 +40,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMoveHelper(Board board, checkersPos* 
 	default:
 		break;
 	}
-	moveNode = buildNewMoveNode(board, src, totalCaptures, NULL, NULL); // build first 	// play without capture before	// check if possible move[0]
-// 
-	//do move position to right and the left
-
+	moveNode = buildNewMoveNode(board, src, totalCaptures, NULL, NULL);
 
 	setPosAndCap(src, newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft, toolMovingPosition);
 
@@ -102,7 +69,6 @@ void allocationsPosAndCap(checkersPos** newPositionRight, checkersPos** newPosit
 		allocationFailure();
 }
 
-
 void setPosAndCap(checkersPos* src, checkersPos* newPositionRight, checkersPos* newPositionLeft, checkersPos* captureMovingPositionRight, checkersPos* captureMovingPositionLeft, int toolMovingPosition)
 {
 	newPositionRight->row = src->row - toolMovingPosition;
@@ -127,9 +93,7 @@ void movePlayerLeft(Board board, SingleSourceMovesTreeNode* moveNode, checkersPo
 		regularMove(moveNode, newPositionLeft, src, board, totalCaptures, LEFT);
 		free(captureMovingPositionLeft);
 	}
-	//("col: %c\n", moveNode->pos->col);
-	//printf("row:%c\n", moveNode->pos->row);
-	//printf("\n capture: %d\n", moveNode->total_captures_so_far);
+
 }
 
 void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersPos* src, checkersPos* captureMovingPositionRight, checkersPos* newPositionRight, char opponentPlayer, int totalCaptures)
@@ -144,9 +108,7 @@ void movePlayerRight(Board board, SingleSourceMovesTreeNode* moveNode, checkersP
 		regularMove(moveNode, newPositionRight, src, board, totalCaptures, RIGHT);
 		free(captureMovingPositionRight);
 	}
-	/*printf("col: %c\n", moveNode->pos->col);
-	printf("row:%c\n", moveNode->pos->row);
-	printf("\n capture: %d\n", moveNode->total_captures_so_far);*/
+
 }
 
 void regularMove(SingleSourceMovesTreeNode* moveNode, checkersPos* newPosition, checkersPos* src, Board board, int totalCaptures, int playOptionIndex)
@@ -160,38 +122,27 @@ void regularMove(SingleSourceMovesTreeNode* moveNode, checkersPos* newPosition, 
 		movementToAdd->pos = newPosition;
 		duplicateBoard(board, movementToAdd);
 		updateBoard(movementToAdd->board, newPosition, src, NULL, movementToAdd);
-		//printf("POS: %d\n", playOptionIndex);
-		//printBoard(movementToAdd->board);
-		//printf("XXXXX");
 		moveNode->next_move[playOptionIndex] = movementToAdd;
 	}
 }
 
-//void captureMove (SingleSourceMovesTreeNode* moveNode, checkersPos *capturedPlayer, checkersPos *capturePos, checkersPos* src, Board board, int totalCaptures, int playOptionIndex) {
-//	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, capturePos, totalCaptures+1, NULL, NULL);
-//	movementToAdd->pos = capturePos;
-//	duplicateBoard(board, movementToAdd);
-//	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
-//	moveNode->next_move[playOptionIndex] = movementToAdd;
-//	printf("POS: %d\n", playOptionIndex);
-//	printBoard(moveNode->next_move[playOptionIndex]->board);
-//	printf("XXXXX");
-//	free(capturedPlayer);
-//}
 SingleSourceMovesTreeNode* captureMove(SingleSourceMovesTreeNode* moveNode, checkersPos* capturedPlayer, checkersPos* capturePos, checkersPos* src, Board board, int totalCaptures, int playOptionIndex)
 {
 	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, capturePos, totalCaptures + 1, NULL, NULL);
-	movementToAdd->pos = capturePos;//////////////////
-	duplicateBoard(moveNode->board, movementToAdd->board);
+	movementToAdd->pos = capturePos;
+	duplicateBoard(moveNode->board, movementToAdd); //duplicateBoard(moveNode->board, movementToAdd->board);
 	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
-	//moveNode->next_move[playOptionIndex] = movementToAdd;
-	//printf("POS: %d\n", playOptionIndex);
-	//printBoard(movementToAdd->board);
-	//printf("XXXXX");
+	moveNode->next_move[playOptionIndex] = movementToAdd; /////////////////////////////////////////////////////////////////check with run this was in remark but this it should be there
+
+
+	///*printf("POS: %d\n", playOptionIndex);
+	printBoard(movementToAdd->board);
+	//printf("XXXXX");*/
+
+
 	free(capturedPlayer);
 	return movementToAdd;
 }
-
 
 SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int totalCaptures, SingleSourceMovesTreeNode* leftNode, SingleSourceMovesTreeNode* rightNode)
 {
@@ -201,7 +152,7 @@ SingleSourceMovesTreeNode* buildNewMoveNode(Board board, checkersPos* src, int t
 
 	duplicateBoard(board, moveNode);
 	moveNode->pos = src;
-	moveNode->total_captures_so_far = totalCaptures; // ìáãå÷ îä òåùéí
+	moveNode->total_captures_so_far = totalCaptures; 
 	moveNode->next_move[LEFT] = leftNode;
 	moveNode->next_move[RIGHT] = rightNode;
 	return moveNode;
@@ -233,21 +184,69 @@ void duplicateBoard(Board board, SingleSourceMovesTreeNode* moveNode)
 
 void printBoard(Board board)
 {
-	printf("   1 2 3 4 5 6 7 8\n");
-	printf("  -----------------\n");
+	printf(" +-+-+-+-+-+-+-+-+-+\n");
+	printf(" + |1|2|3|4|5|6|7|8|\n");
+	printf(" +-+-+-+-+-+-+-+-+-+\n");
 	for (int row = 0; row < BOARD_SIZE; row++)
 	{
-		printf("%c |", 'A' + row);
+		printf(" |%c|", 'A' + row);
 		for (int col = 0; col < BOARD_SIZE; col++)
 		{
 			printf("%c|", board[row][col]);
 		}
 		printf("\n");
-		printf("  -----------------\n");
+		printf(" +-+-+-+-+-+-+-+-+-+\n");
 	}
 }
 
 
+/*printf("col: %c\n", moveNode->pos->col);
+printf("row:%c\n", moveNode->pos->row);
+printf("\n capture: %d\n", moveNode->total_captures_so_far);*/
+
+
+//("col: %c\n", moveNode->pos->col);
+//printf("row:%c\n", moveNode->pos->row);
+//printf("\n capture: %d\n", moveNode->total_captures_so_far);
+
+//printf("POS: %d\n", playOptionIndex);
+		//printBoard(movementToAdd->board);
+		//printf("XXXXX");
+
+
+//void captureMove (SingleSourceMovesTreeNode* moveNode, checkersPos *capturedPlayer, checkersPos *capturePos, checkersPos* src, Board board, int totalCaptures, int playOptionIndex) {
+//	SingleSourceMovesTreeNode* movementToAdd = buildNewMoveNode(moveNode->board, capturePos, totalCaptures+1, NULL, NULL);
+//	movementToAdd->pos = capturePos;
+//	duplicateBoard(board, movementToAdd);
+//	updateBoard(movementToAdd->board, capturePos, src, capturedPlayer, movementToAdd);
+//	moveNode->next_move[playOptionIndex] = movementToAdd;
+//	printf("POS: %d\n", playOptionIndex);
+//	printBoard(moveNode->next_move[playOptionIndex]->board);
+//	printf("XXXXX");
+//	free(capturedPlayer);
+//}
+
+//moveNode->next_move[playOptionIndex] = movementToAdd;
+	//printf("POS: %d\n", playOptionIndex);
+	//printBoard(movementToAdd->board);
+	//printf("XXXXX");
+
+//	allocationsPosAndCap(newPositionRight, newPositionLeft, captureMovingPositionRight, captureMovingPositionLeft);
+	/*newPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!newPositionRight)
+		allocationFailure();
+
+	newPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!newPositionLeft)
+		allocationFailure();
+
+	captureMovingPositionRight = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!captureMovingPositionRight)
+		allocationFailure();
+
+	captureMovingPositionLeft = (checkersPos*)malloc(sizeof(checkersPos));
+	if (!captureMovingPositionLeft)
+		allocationFailure();*/
 
 
 //void printBoard(Board board)

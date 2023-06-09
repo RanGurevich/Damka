@@ -5,22 +5,6 @@
  int totalCapturesT = 0;
  int totalCapturesB = 0;
 
-void printList(SingleSourceMovesList* lst)
-{
-	SingleSourceMovesListCell* curr = lst->head;
-	int count = 1;
-
-	while (curr != NULL)
-	{
-		printf("num of cell: %d \n", count);
-		printf("col: %c\n", curr->position->col);
-		printf("row:%c\n", curr->position->row);
-		printf("captures: % d\n", curr->captures);
-		printf("\n");
-		count++;
-		curr = curr->next;
-	}
-}
 
 void Turn(Board board, Player player) {
 	MultipleSourceMovesList* allMoves = FindAllPossiblePlayerMoves(board, player);
@@ -134,7 +118,22 @@ bool isWon(Board board, Player player) {
 	return false;
 }
 
+void printList(SingleSourceMovesList* lst)
+{
+	SingleSourceMovesListCell* curr = lst->head;
+	int count = 1;
 
+	while (curr != NULL)
+	{
+		printf("num of cell: %d \n", count);
+		printf("col: %c\n", curr->position->col);
+		printf("row:%c\n", curr->position->row);
+		printf("captures: % d\n", curr->captures);
+		printf("\n");
+		count++;
+		curr = curr->next;
+	}
+}
 
 
 //bool isWon(Board board, Player player) {
