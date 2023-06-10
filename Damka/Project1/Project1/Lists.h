@@ -1,6 +1,9 @@
 #ifndef __LISTS_H
 #define __LISTS_H
+
 #include "utills.h"
+#include "Lists.h"
+#include "structs.h"
 
 void insertDataToEndListSingleSource(SingleSourceMovesList* lst, checkersPos* position, unsigned short captures, SingleSourceMovesListCell* next);
 SingleSourceMovesListCell* createNewListNodeSingleSource(checkersPos* position, unsigned short captures, SingleSourceMovesListCell* next);
@@ -14,5 +17,6 @@ void makeEmptyListAllOptions(MultipleSourceMovesList* lst);
 bool isEmptyListAllOptions(MultipleSourceMovesList* lst);
 void freeSingleSourceMovesList(SingleSourceMovesList* list);
 void freeMultipleSourceMovesList(MultipleSourceMovesList* list);
+
 
 #endif

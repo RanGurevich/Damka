@@ -183,7 +183,10 @@ void printGameStart(Board board)
 	printf("===================================================\n\n");
 	printf("\nHello! and welcone to the checkers game:\n");
 	printf("In the upcoming checkers game, the computer will play against itself.\n\n");
-	printf("\n                   ENJOY!\n\n");
+	printf("All you have to do is choose who is the starting player, T or B\n"
+		"In each move, the checkerboard and the executed move will be printed\n"
+		"At the end of the game, a summary of the main moves in the game will be presented\n");
+	printf("\nENJOY!\n\n");
 	printf("The Initial Board:\n");
 	printBoard(board);
 	printf("\n");

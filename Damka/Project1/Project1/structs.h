@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __STRUCTS_H
+#define __STRUCTS_H
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
@@ -55,3 +57,5 @@ typedef struct _multipleSourceMovesList {
 	MultipleSourceMovesListCell* head;
 	MultipleSourceMovesListCell* tail;
 } MultipleSourceMovesList;
+
+#endif
