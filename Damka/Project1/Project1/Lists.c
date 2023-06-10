@@ -113,7 +113,7 @@ bool isEmptyListAllOptions(MultipleSourceMovesList* lst) // checks if a Multiple
 		return false;
 }
 
-void freeSingleSourceMovesList(SingleSourceMovesList* list) // free freeSingleSourceMovesList
+void freeSingleSourceMovesList(SingleSourceMovesList* list) // free SingleSourceMovesList
 {
 	SingleSourceMovesListCell* curr = list->head;
 	SingleSourceMovesListCell* next;
@@ -128,7 +128,7 @@ void freeSingleSourceMovesList(SingleSourceMovesList* list) // free freeSingleSo
 	free(list);
 }
 
-void freeMultipleSourceMovesList(MultipleSourceMovesList* list) // free freeMultipleSourceMovesList
+void freeMultipleSourceMovesList(MultipleSourceMovesList* list) // free MultipleSourceMovesList
 {
 	MultipleSourceMovesListCell* curr = list->head;
 	MultipleSourceMovesListCell* next;

@@ -20,6 +20,10 @@ void main()
 	printGameStart(board);
 	printf("Please Press T or B for start: ");
 	scanf("%c", &player);
+	printf("\nThe Initial Board:\n");
+	printBoard(board);
+	printf("\n");
+	printf("===================================================\n\n");
 	PlayGame(board, player);
 
 }

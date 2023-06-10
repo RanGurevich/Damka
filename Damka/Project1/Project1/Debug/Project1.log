@@ -1,19 +1,4 @@
-﻿  Damka.c
-  Lists.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\Lists.c(19,20): warning C4013: 'allocationFailure' undefined; assuming extern returning int
-  boardAndMovemnts.c
-  gameManegemant.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(33,29): warning C4013: 'freeMultipleSourceMovesList' undefined; assuming extern returning int
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(70,67): warning C4020: 'updateBoard': too many actual parameters
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(101,78): warning C4020: 'updateBoard': too many actual parameters
+﻿  gameManegemant.c
 C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(118,6): warning C4101: 'i': unreferenced local variable
 C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(139,6): warning C4101: 'i': unreferenced local variable
-  movements.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(19,27): warning C4013: 'makeEmptyListSingleSource' undefined; assuming extern returning int
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(39,33): warning C4013: 'insertDataToEndListSingleSource' undefined; assuming extern returning int
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(96,25): warning C4013: 'makeEmptyListAllOptions' undefined; assuming extern returning int
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(111,35): warning C4013: 'insertDataToEndListAllOptions' undefined; assuming extern returning int
-  utills.c
-  Generating Code...
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(65): warning C4715: 'FindSingleSourceOptimalMoveHelper': not all control paths return a value
   Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Debug\Project1.exe

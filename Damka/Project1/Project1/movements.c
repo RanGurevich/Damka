@@ -33,9 +33,9 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 	if (!treeNode) {
 		return 0;
 	}
-	/* find the number of captures for the left and right moves for choosing the correct path after it*////////////////////////?????? does it right??
-	capturesRight = !treeNode->next_move[RIGHT] ? -1 : findTheBiggerCapture(treeNode->next_move[RIGHT]); 
-	capturesLeft = !treeNode->next_move[LEFT] ? -1 : findTheBiggerCapture(treeNode->next_move[LEFT]); 
+	/* find the number of captures for the left and right moves and continue to build the tree if there is a capture */
+	capturesRight = !treeNode->next_move[RIGHT] ? NOT_HAVE : findTheBiggerCapture(treeNode->next_move[RIGHT]); 
+	capturesLeft = !treeNode->next_move[LEFT] ? NOT_HAVE : findTheBiggerCapture(treeNode->next_move[LEFT]); 
 	insertDataToEndListSingleSource(list, treeNode->pos, treeNode->total_captures_so_far, NULL);
 
 	if (capturesRight > capturesLeft) //conditions for choosing the correct path
@@ -48,20 +48,18 @@ int FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* treeNode, Singl
 		if (currPlayer == PLAYER_T)
 		{
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[RIGHT], list, currPlayer);
-			//not sure if should be free here////////////////////////////////////
 		}
 		else
 		{
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
-			//not sure if should be free here///////////////////////////////////
 		}
 	}
 	else
 	{
 		if (treeNode->next_move[LEFT])
 			FindSingleSourceOptimalMoveHelper(treeNode->next_move[LEFT], list, currPlayer);
-		//not sure if should be free here///////////////////////////////////////
 	}
+
 }
 
 int findTheBiggerCapture(SingleSourceMovesTreeNode* treeNode) // findTheBiggerCapture function finds the maximum number of captures in a subtree of possible moves /
@@ -116,7 +114,6 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 	}
 
 	freeMoveTree(moveTree);
-	//free(pos); //////////////////////////////////////////////////////////
 		
 	return playerAllOptionsList;
 }

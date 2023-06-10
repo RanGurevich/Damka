@@ -1,5 +1,6 @@
 #include "gameManegment.h"
 
+
  int maxCapturesInSingleMoves = 0;
  Player playerThatDidTheMaxCaptures;
  int totalCapturesT = 0;
@@ -31,7 +32,6 @@ void Turn(Board board, Player player) //Turn function performs a turn for a play
 	printData(bestPlay, board);
 	
 	freeMultipleSourceMovesList(allMoves);
-	////////////////freeSingleSourceMovesList(bestPlay);
 }
 
 /* findBestMove finds the best move for a player from a list of all possible moves */
@@ -67,7 +67,7 @@ void setNewBoard(Board board, SingleSourceMovesList* bestPlay, Player player)
 	{
 		if (curr->captures == 0) // update in case there are 0 captures
 		{
-			updateBoard(board, curr->position, currBefore->position, NULL, NULL);
+			updateBoard(board, curr->position, currBefore->position, NULL);
 		}
 		else // if there are captures the function removes the captured one and save the other
 		{
@@ -98,7 +98,7 @@ void setNewBoard(Board board, SingleSourceMovesList* bestPlay, Player player)
 			default:
 				break;
 			}
-			updateBoard(board, curr->position, currBefore->position, &captureToRmove, NULL); // update the board
+			updateBoard(board, curr->position, currBefore->position, &captureToRmove); // update the board
 		}
 		curr = curr->next;
 		currBefore = currBefore->next;
@@ -152,7 +152,7 @@ bool isWon(Board board, Player player) // checks if a player has won the game ac
 	return false;
 }
 
-void printBoard(Board board)
+void printBoard(Board board) // print board
 {
 	printf(" +-+-+-+-+-+-+-+-+-+\n");
 	printf(" + |1|2|3|4|5|6|7|8|\n");
@@ -169,7 +169,7 @@ void printBoard(Board board)
 	}
 }
 
-void printGameStart(Board board)
+void printGameStart(Board board) // prints welcome message
 {
 	printf("===================================================\n");
 	printf(" _    _      _                            _          \n");
@@ -180,6 +180,7 @@ void printGameStart(Board board)
 	printf(" \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/   \n");
 
 	printf("\n                Checkers Game                    \n");
+	printf("\n     Made by: Ran Gurevich and Avraham Levi         \n");
 	printf("===================================================\n\n");
 	printf("\nHello! and welcone to the checkers game:\n");
 	printf("In the upcoming checkers game, the computer will play against itself.\n\n");
@@ -187,10 +188,7 @@ void printGameStart(Board board)
 		"In each move, the checkerboard and the executed move will be printed\n"
 		"At the end of the game, a summary of the main moves in the game will be presented\n");
 	printf("\nENJOY!\n\n");
-	printf("The Initial Board:\n");
-	printBoard(board);
-	printf("\n");
-	printf("===================================================\n\n");
+	
 }
 
 //void printList(SingleSourceMovesList* lst)

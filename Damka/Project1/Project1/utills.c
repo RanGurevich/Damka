@@ -27,7 +27,7 @@ char getCharOnBoard(Board board, checkersPos *position) // return the specific p
 	return board[convertRow(position)][convertCol(position)];
 }
 
-void allocationFailure() //error message and exit in case the allocation has failed
+void allocationFailure() // error message and exit in case the allocation has failed
 {
 	printf("Sorry, Allocation failure");
 	exit(1);

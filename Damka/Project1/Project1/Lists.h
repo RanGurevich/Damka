@@ -2,7 +2,6 @@
 #define __LISTS_H
 
 #include "utills.h"
-#include "Lists.h"
 #include "structs.h"
 
 void insertDataToEndListSingleSource(SingleSourceMovesList* lst, checkersPos* position, unsigned short captures, SingleSourceMovesListCell* next);

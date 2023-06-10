@@ -14,7 +14,7 @@
 #define LEFT 0
 #define RIGHT 1
 #define NUMBER_OF_TOOLS 12
-
+#define NOT_HAVE -1
 typedef struct checkerPos
 {
 	char row, col;
