@@ -1,11 +1,11 @@
 #ifndef __GAME_MANEGMENT_H
 #define __GAME_MANEGMENT_H
 
-#include "structs.h"
-#include "utills.h"
-#include "movements.h"
-#include "Lists.h"
-#include "boardAndMovements.h"
+#include "Structs.h"
+#include "Utills.h"
+#include "MovementsAndLists.h"
+#include "ListsUtills.h"
+#include "BoardAndTrees.h"
 
 void Turn(Board board, Player player);
 SingleSourceMovesList* findBestMove(MultipleSourceMovesList* allMoves, Player playTurn);

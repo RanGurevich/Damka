@@ -15,42 +15,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Damka.c">
+    <ClCompile Include="DamkaMain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="boardAndMovemnts.c">
+    <ClCompile Include="BoardAndTrees.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="utills.c">
+    <ClCompile Include="Utills.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lists.c">
+    <ClCompile Include="ListsUtills.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="movements.c">
+    <ClCompile Include="MovementsAndLists.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameManegemant.c">
+    <ClCompile Include="GameManegment.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="boardAndMovements.h">
+    <ClInclude Include="BoardAndTrees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="structs.h">
+    <ClInclude Include="Structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="utills.h">
+    <ClInclude Include="Utills.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lists.h">
+    <ClInclude Include="ListsUtills.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="movements.h">
+    <ClInclude Include="MovementsAndLists.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gameManegment.h">
+    <ClInclude Include="GameManegment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

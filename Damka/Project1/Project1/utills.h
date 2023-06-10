@@ -1,7 +1,7 @@
 #ifndef __UTILLS_H
 #define __UTILLS_H
 
-#include "structs.h"
+#include "Structs.h"
 
 bool checkValidation(Board board, checkersPos* src);
 bool checkPosValid(checkersPos* src);

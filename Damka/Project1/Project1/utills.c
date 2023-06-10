@@ -1,4 +1,4 @@
-#include "utills.h"
+#include "Utills.h"
 
 bool checkValidation(Board board, checkersPos* src) // checks for valid pos and for not an empty slot
 {
