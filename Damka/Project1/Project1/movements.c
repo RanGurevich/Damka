@@ -110,15 +110,13 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 				if (optimalMoves->head != optimalMoves->tail) {
 					insertDataToEndListAllOptions(playerAllOptionsList, &optimalMovesToSend, NULL);
 				}
-				//printListAllOptions(optimalMoves);
 				free(optimalMoves);
 			}
-			//printf("i %d j %d\n", i, j);
 		}
 	}
 
 	freeMoveTree(moveTree);
-	//free(pos);
+	//free(pos); //////////////////////////////////////////////////////////
 		
 	return playerAllOptionsList;
 }

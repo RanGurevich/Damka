@@ -1,10 +1,8 @@
 ﻿  Damka.c
   gameManegemant.c
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(68,67): warning C4020: 'updateBoard': too many actual parameters
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(99,78): warning C4020: 'updateBoard': too many actual parameters
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(108,6): warning C4101: 'i': unreferenced local variable
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(127,6): warning C4101: 'i': unreferenced local variable
-  movements.c
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(70,67): warning C4020: 'updateBoard': too many actual parameters
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(101,78): warning C4020: 'updateBoard': too many actual parameters
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(118,6): warning C4101: 'i': unreferenced local variable
+C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\gameManegemant.c(139,6): warning C4101: 'i': unreferenced local variable
   Generating Code...
-C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Project1\movements.c(65): warning C4715: 'FindSingleSourceOptimalMoveHelper': not all control paths return a value
   Project1.vcxproj -> C:\Users\אברמיקו\Desktop\damkaVersions\v7\Damka\Damka\Project1\Debug\Project1.exe
